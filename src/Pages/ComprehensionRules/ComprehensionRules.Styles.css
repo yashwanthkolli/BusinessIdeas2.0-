@@ -1,0 +1,76 @@
+.comprehension-rules-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.comprehension-rules-container .comprehesion-rules{
+    background: #282c34;
+    width: 85%;
+    border-radius: 10px;
+    transition: all 1s cubic-bezier(0.445, 0.05, 0, 1);
+    color: #fff;
+    transform: scale(0.95);
+}
+
+.comprehension-rules-container:hover .comprehesion-rules{
+    box-shadow: -10px -10px 20px rgba(255,255,255,0.05),
+                10px 10px 30px rgba(0,0,0,0.5);
+    transform: scale(1);
+}
+
+.comprehension-rules-container:hover .button button{
+    box-shadow: -5px -5px 10px rgba(255,255,255,0.05),
+                5px 5px 15px rgba(0,0,0,0.5);
+}
+
+.comprehension-rules-container .comprehesion-rules .header{
+    background-color: #202020;
+    width: 52%;
+    display: flex;
+    border-radius: 10px 10px 0 0;
+    padding: 10px 24%;
+    margin: 0;
+}
+
+.comprehension-rules-container .comprehesion-rules h1{
+    color: #f8d229;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    width: 90%;
+}
+
+.comprehension-rules-container .comprehesion-rules .rules{
+    width: 80%;
+    height: fit-content;
+    padding: 10px 10%;
+    margin: 0;
+    font-size: 20px;
+}
+
+.comprehension-rules-container .comprehesion-rules a{
+    color: #2ba15f;
+    text-decoration: none;
+}
+
+.comprehesion-rules .button{
+    background: #202020;
+    border-radius: 0 0 10px 10px;
+}
+
+.comprehesion-rules .button button{
+    background: #202020;
+    width: 20%;
+    margin: 20px 40%;
+    height: 40px;
+    transition: all 0.5s cubic-bezier(0.445, 0.05, 0, 1);
+    border: none;
+    outline: none;
+    border-radius: 20px;
+    color: #2ba15f;
+    font-size: 20px;
+    margin-top: 20px;
+}
