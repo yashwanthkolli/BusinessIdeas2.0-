@@ -4,7 +4,7 @@ import './ComprehensionQuestions.Styles.css';
 
 import QuestionCard from '../QuestionCard/QuestionCard'
 
-const ComprehensionQuestions = ({questions}) => {
+const ComprehensionQuestions = ({questions, score}) => {
     return(
         <div className='mcqs-container'>
             <div className='mcq-questions'>

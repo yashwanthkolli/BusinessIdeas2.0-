@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 
 import './ComprehensionRules.Styles.css';
 
-const ComprehensionRules = ({match, comprehensionData}) => {
+const ComprehensionRules = ({match}) => {
     const allotedCompanyName = match.params.companyName;
     return(
         <div className='comprehension-rules-container'>
@@ -37,8 +36,4 @@ const ComprehensionRules = ({match, comprehensionData}) => {
     )
 }
 
-const mapStateToProps = state => ({
-    comprehensionData: state.comprehension.comprehensionData
-})
-
-export default connect(mapStateToProps)(ComprehensionRules);
+export default ComprehensionRules;
