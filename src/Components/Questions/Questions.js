@@ -6,7 +6,7 @@ import './Questions.Styles.css';
 import Header from '../Header/Header';
 import ComprehensionQuestions from '../ComprehensionQuestions/ComprehensionQuestions';
 
-const Questions = ({redirect, questions, questionsName, score}) => {
+const Questions = ({redirect, questions, questionsName}) => {
     return(
         <div className='questions-page'>
             <Header heading={questionsName} />
