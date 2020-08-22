@@ -19,8 +19,7 @@ function App() {
   return (
     <div className="App">
     <Switch>
-      <Route exact path='/'><Redirect to='/login' /></Route>
-      <Route exact path='/login' component={HomePage} />
+      <Route exact path='/' component={HomePage} />
       <Route exact path='/intro' component={IntroductionPage} />
       <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
       <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
