@@ -1,6 +1,12 @@
 const router = require ('express').Router();
 const Company = require('../model/company.model');
 
+router.route('/info').get((req,res)=>
+{
+  Company.find()
+    .then(info => res.json(info))
+    .catch(err => res.status(400).json('Error: ' + err));
+})
 
 router.route('/add').post((req, res) => {
     

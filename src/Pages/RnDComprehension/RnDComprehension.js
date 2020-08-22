@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './RnDComprehension.Styles.css'
+import Axios from 'axios';
 
 export default class RnDComprehension extends Component {
     constructor(){
@@ -12,9 +13,11 @@ export default class RnDComprehension extends Component {
     }
 
     componentDidMount(){
-        fetch('https://baconipsum.com/api/?type=meat-and-filler')
-        .then(res => res.json())
-        .then(data => this.setState({rndComprehension: data[0]}))
+        Axios.get('http://localhost:5000/company/info')
+        .then(res => res.data.map( company => company.name === this.props.match.params.companyName ?
+                this.setState({rndComprehension: company.rnd})
+                : console.log()
+            ))
     }
 
     render() {

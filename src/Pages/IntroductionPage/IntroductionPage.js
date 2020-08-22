@@ -5,36 +5,36 @@ import './IntroductionPage.Styles.css';
 
 import Header from '../../Components/Header/Header';
 import Body from '../../Components/Body/Body';
+import Axios from 'axios';
 
 class IntroductionPage extends Component {
     constructor(){
         super()
         this.state = {
-            Companies: ['lnt', 'reliance', 'sony', 'tata'],
-            allotedCompany: '',
-            allotedCompanyIntro: ''
+            Companies: []
         }
     }
 
     componentDidMount(){
-        this.setState((prevState) => {
-            return{ allotedCompany: prevState.Companies[Math.floor(Math.random()*prevState.Companies.length)]}
-        })
+        Axios.get('http://localhost:5000/company/info')
+        .then(res => this.setState({Companies: res.data}))
+    }
 
-        fetch('https://baconipsum.com/api/?type=meat-and-filler')
-        .then(res => res.json())
-        .then(data => this.setState({allotedCompanyIntro: data[0]}))
+    componentDidUpdate(){
+        const allotedCompany = this.state.Companies[Math.floor(Math.random()*this.state.Companies.length)]
+        return allotedCompany
     }
 
     render(){
+        console.log(this.componentDidUpdate())
         return (
-            this.state.allotedCompany && this.state.allotedCompanyIntro ? 
+            this.state.Companies && this.componentDidUpdate() ?
             <div className='introduction-page'>
                 <div className='company-introduction'>
-                    <Header heading={this.state.allotedCompany} />
-                    <Body body={this.state.allotedCompanyIntro} />
+                    <Header heading={this.componentDidUpdate().name} />
+                    <Body body={this.componentDidUpdate().info} />
                     <div className='button'>
-                        <button><Link to={'/comprehensionRules/'+this.state.allotedCompany}>Comprehensions &#8594;</Link></button>
+                        <button><Link to={'/comprehensionRules/'+this.componentDidUpdate().name}>Comprehensions &#8594;</Link></button>
                     </div>
                 </div>
             </div>

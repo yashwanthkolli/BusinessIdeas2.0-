@@ -9,8 +9,8 @@ const User = require('./model/user')
 
 var passport       =require('passport'),
     LocalStrategy  =require("passport-local"),
-    methodOverride =require("method-override")
-    bodyParser     =require("body-parser"),
+    methodOverride =require("method-override"),
+    bodyParser     =require("body-parser")
 
 
 app.use(require("express-session")({ //This creates a session for every user logged in(No changes required here.)
@@ -34,7 +34,7 @@ const port = process.env.PORT || 5000;
 
 
 //MONGODB CONNECTION
-mongoose.connect(process.env.ATLAS_USER, {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex:true ,} ,() => console.log('connected to Mongodb'));
+mongoose.connect(process.env.ATLAS_USER, {useNewUrlParser:true, useUnifiedTopology: true, useCreateIndex:true});
 const connection = mongoose.connection;
 connection.once('open', () => { console.log("MongoDB database connection established successfully"); });
 
