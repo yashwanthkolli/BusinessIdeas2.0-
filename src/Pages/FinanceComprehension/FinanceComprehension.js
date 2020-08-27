@@ -16,11 +16,13 @@ export default class FinanceComprehension extends Component {
         Axios.get('http://localhost:5000/company/info')
         .then(res => res.data.map( company => company.name === this.props.match.params.companyName ?
                 this.setState({financeComprehension: company.finance})
-                : console.log()
+                : window.location='/',console.log()
             ))
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
             this.state.financeComprehension ? 
             <div className='finance-comprehension-page'>
@@ -28,5 +30,7 @@ export default class FinanceComprehension extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/';}
     }
 }

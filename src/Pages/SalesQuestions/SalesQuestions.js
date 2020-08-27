@@ -16,6 +16,8 @@ export default class SalesQuestions extends Component {
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
             this.state.salesQuestions ?
             <div>
@@ -23,5 +25,7 @@ export default class SalesQuestions extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/';}
     }
 }

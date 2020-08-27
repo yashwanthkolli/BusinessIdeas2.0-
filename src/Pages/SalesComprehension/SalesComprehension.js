@@ -21,6 +21,8 @@ export default class SalesComprehension extends Component {
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
             this.state.salesComprehension ? 
             <div className='sales-comprehension-page'>
@@ -28,5 +30,7 @@ export default class SalesComprehension extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/';}
     }
 }

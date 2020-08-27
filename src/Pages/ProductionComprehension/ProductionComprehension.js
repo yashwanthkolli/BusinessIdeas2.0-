@@ -21,6 +21,8 @@ export default class ProductionComprehension extends Component {
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
             this.state.productionComprehension ? 
             <div className='production-comprehension-page'>
@@ -28,5 +30,7 @@ export default class ProductionComprehension extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/';}
     }
 }

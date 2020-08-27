@@ -16,6 +16,9 @@ export default class RnDQuestions extends Component {
     }
 
     render() {
+        if(localStorage.getItem('usertoken')!==null)
+        {
+            console.log(localStorage.getItem('userToken'))
         return (
             this.state.rndQuestions ?
             <div>
@@ -23,5 +26,10 @@ export default class RnDQuestions extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{
+            window.location='/'
+            return(null)
+        }
     }
 }

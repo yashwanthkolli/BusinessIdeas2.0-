@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
+import { setCurrentUser } from '../../Redux/User/UserActions';
+
 import './IntroductionPage.Styles.css';
 
 import Header from '../../Components/Header/Header';
@@ -11,37 +15,97 @@ class IntroductionPage extends Component {
     constructor(){
         super()
         this.state = {
-            Companies: []
+            
+            CompanyName:'',
+            info:'',
+           
         }
     }
 
+
+
     componentDidMount(){
+
+        Axios.get('http://localhost:5000/user/'+this.props.match.params.id)
+        .then(response => {
+          if (response.status === 200) {
+            this.setState({
+              CompanyName: response.data.company,
+            })
+            this.props.setCurrentUser(response.data)
+            alert('You are alloted with the company '+response.data.company.toUpperCase())
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+
+
+        Axios.get('http://localhost:5000/company/info')
+        .then(res => res.data.map( company => company.name.toUpperCase() === this.state.CompanyName.toUpperCase() ?
+                this.setState({info: company.production})
+                : console.log()
+            ))
+    }
+
+
+
+   /* componentDidMount(){
         Axios.get('http://localhost:5000/company/info')
         .then(res => this.setState({Companies: res.data}))
     }
 
     componentDidUpdate(){
-        const allotedCompany = this.state.Companies[Math.floor(Math.random()*this.state.Companies.length)]
+        
+        axios.get('http://localhost:5000/user/'+this.props.match.params.id)
+        .then(response => {
+          if (response.data.length > 0) {
+            this.setState({
+              name: response.data.company,
+            })
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+        
+        
+        
+        /*const allotedCompany = this.state.Companies[Math.floor(Math.random()*this.state.Companies.length)]
         return allotedCompany
-    }
+    }*/
+    
 
     render(){
-        console.log(this.componentDidUpdate())
+
+      if(localStorage.getItem('usertoken'))  
+      {
         return (
-            this.state.Companies && this.componentDidUpdate() ?
+            this.state.CompanyName?
             <div className='introduction-page'>
                 <div className='company-introduction'>
-                    <Header heading={this.componentDidUpdate().name} />
-                    <Body body={this.componentDidUpdate().info} />
+                    <Header heading={this.state.CompanyName} />
+                    <Body body={this.state.info} />
                     <div className='button'>
-                        <button><Link to={'/comprehensionRules/'+this.componentDidUpdate().name}>Comprehensions &#8594;</Link></button>
+                        <button><Link to={'/comprehensionRules/'+this.state.CompanyName}>Comprehensions &#8594;</Link></button>
                     </div>
                 </div>
             </div>
-            : <div className='loading'>Loading...</div>
+            :
+            <div>
+                LOADING....
+            </div>
+            
         )
+      }
+      else
+      {window.location='/';}
     }
     
 }
 
-export default IntroductionPage;
+const mapDispatchToProps = dispatch => ({
+  setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(null , mapDispatchToProps)(IntroductionPage);

@@ -1,5 +1,6 @@
-import React from 'react';
-import{ Switch, Route, Redirect } from 'react-router-dom';
+
+import React, { Component } from 'react';
+import{ Switch, Route } from 'react-router-dom';
 
 import './App.css';
 
@@ -14,13 +15,32 @@ import RnDComprehension from './Pages/RnDComprehension/RnDComprehension';
 import RnDQuestions from './Pages/RnDQuestions/RnDQuestions';
 import SalesComprehension from './Pages/SalesComprehension/SalesComprehension';
 import SalesQuestions from './Pages/SalesQuestions/SalesQuestions';
+import Timer from './Components/Timer/Timer';
 
-function App() {
+class App extends Component{ 
+  constructor(){
+    super();
+    this.state = {
+        flag: false,
+
+    }
+    this.userUpdate=this.userUpdate.bind(this);
+
+}
+
+  userUpdate (userObject) {
+  this.setState(userObject)
+}
+
+  render(){
   return (
     <div className="App">
+    <div className='timer'>
+        <Timer match={window.location.pathname} />
+    </div>
     <Switch>
       <Route exact path='/' component={HomePage} />
-      <Route exact path='/intro' component={IntroductionPage} />
+      <Route exact path='/intro/:id' component={IntroductionPage} />
       <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
       <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
       <Route exact path='/comprehension/:companyName/ProductionQuestions' component={ProductionQuestions} />
@@ -30,9 +50,11 @@ function App() {
       <Route exact path='/comprehension/:companyName/ResdevQuestions' component={RnDQuestions} />
       <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
       <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
+      
     </Switch>
     </div>
   );
+  }
 }
 
 export default App;

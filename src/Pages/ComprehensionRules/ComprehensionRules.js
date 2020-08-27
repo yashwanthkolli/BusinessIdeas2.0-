@@ -5,7 +5,10 @@ import './ComprehensionRules.Styles.css';
 
 const ComprehensionRules = ({match}) => {
     const allotedCompanyName = match.params.companyName;
+    if(localStorage.getItem('usertoken'))
+    {
     return(
+        
         <div className='comprehension-rules-container'>
             <div className='comprehesion-rules'>
                 <h1 className='header'>Comprehension Round Rules</h1>
@@ -34,6 +37,10 @@ const ComprehensionRules = ({match}) => {
             </div>
         </div>
     )
+    }
+    else{
+        window.location='/';
+    }
 }
 
 export default ComprehensionRules;

@@ -11,11 +11,14 @@ export default class ProductionQuestions extends Component {
     }
 
     componentDidMount(){
+        alert("You are NOT allowed to CHANGE the answer after submitting")
         Axios.get('http://localhost:5000/'+this.props.match.params.companyName+'/getproduction')
         .then(res => this.setState({productionQuestions: res.data}))
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
             this.state.productionQuestions ?
             <div>
@@ -23,5 +26,7 @@ export default class ProductionQuestions extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/';}
     }
 }

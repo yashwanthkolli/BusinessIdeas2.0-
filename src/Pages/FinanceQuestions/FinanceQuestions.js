@@ -11,17 +11,26 @@ export default class FinanceQuestions extends Component {
     }
 
     componentDidMount(){
+        
+        
         Axios.get('http://localhost:5000/'+this.props.match.params.companyName+'/getfinance')
         .then(res => this.setState({financeQuestions: res.data}))
+        
+       
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
+            
             this.state.financeQuestions ?
             <div>
                 <Questions redirect={'/comprehension/'+this.props.match.params.companyName+'/Resdev'} questions={this.state.financeQuestions} questionsName='Finance Questions' />
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/'}
     }
 }

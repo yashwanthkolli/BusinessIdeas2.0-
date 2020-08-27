@@ -21,6 +21,8 @@ export default class RnDComprehension extends Component {
     }
 
     render() {
+        if(localStorage.getItem('usertoken'))
+        {
         return (
             this.state.rndComprehension ? 
             <div className='rnd-comprehension-page'>
@@ -28,5 +30,7 @@ export default class RnDComprehension extends Component {
             </div>
             : <div className='loading'>Loading...</div>
         )
+        }
+        else{window.location='/';}
     }
 }
