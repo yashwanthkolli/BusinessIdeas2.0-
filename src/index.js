@@ -11,11 +11,9 @@ import App from './App';
 import store from './Redux/Store';
 
 ReactDOM.render(
-  <Provider store={store}>
     <BrowserRouter>
       <App />
-    </BrowserRouter>
-  </Provider>,
+    </BrowserRouter>,
   document.getElementById('root')
 );
 

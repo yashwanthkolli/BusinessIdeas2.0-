@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import './QuestionCard.Styles.css';
 import { updateScore } from '../../Redux/User/UserActions';
+import Axios from 'axios';
 
 const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
     const { _id, question, answer } = questionDetails;
@@ -19,8 +20,6 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
         response.push(data)
     }
 
-    console.log(answer)
-
     const onSubmitMcqs = (e) => {
         e.preventDefault();
         const respons = response[response.length-1];
@@ -28,6 +27,11 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
         console.log(result[result.length-1])
         if(result[result.length-1] === true) {
             updateScore(currentUser.score)
+            const points = {
+                score: currentUser.score
+            }
+            //Axios.post('http://localhost:5000/score/'+currentUser.currentUser._id, points)
+            //.then(res => console.log(res.data));
         }
         var form = document.getElementById(respons.name)
         var elements = form.elements
@@ -52,7 +56,7 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user
 });
 
 const mapDispatchToProps = dispatch => ({

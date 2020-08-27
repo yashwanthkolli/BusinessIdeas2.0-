@@ -16,7 +16,7 @@ export default class FinanceComprehension extends Component {
         Axios.get('http://localhost:5000/company/info')
         .then(res => res.data.map( company => company.name === this.props.match.params.companyName ?
                 this.setState({financeComprehension: company.finance})
-                : window.location='/',console.log()
+                : console.log()
             ))
     }
 

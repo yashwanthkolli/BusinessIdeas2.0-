@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
+import { toast, ToastContainer } from 'react-toastify';
+
+import './ProductionQuestion.Styles.css'
 
 export default class ProductionQuestions extends Component {
     constructor(){
@@ -11,7 +14,7 @@ export default class ProductionQuestions extends Component {
     }
 
     componentDidMount(){
-        alert("You are NOT allowed to CHANGE the answer after submitting")
+        toast.warn("You are NOT allowed to CHANGE the answer after submitting")
         Axios.get('http://localhost:5000/'+this.props.match.params.companyName+'/getproduction')
         .then(res => this.setState({productionQuestions: res.data}))
     }
@@ -22,6 +25,7 @@ export default class ProductionQuestions extends Component {
         return (
             this.state.productionQuestions ?
             <div>
+                <ToastContainer className='alert' />
                 <Questions redirect={'/comprehension/'+this.props.match.params.companyName+'/Finance'} questions={this.state.productionQuestions} questionsName='Production Questions' />
             </div>
             : <div className='loading'>Loading...</div>

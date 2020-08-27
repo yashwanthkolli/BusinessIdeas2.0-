@@ -16,7 +16,7 @@ import Body from '../Body/Body';
                 <Header heading={comprehensionName+' Comprehension'} />
                 <Body body={comprehension} />
                 <div className='button'>
-                    <button><Link to={redirect}>Questions</Link></button>
+                    <Link to={redirect}><button>Questions</button></Link>
                 </div>
             </div>
         </div>

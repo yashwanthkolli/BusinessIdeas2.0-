@@ -12,9 +12,7 @@ const Questions = ({redirect, questions, questionsName}) => {
             <Header heading={questionsName} />
             <ComprehensionQuestions questions={questions} />
             <div className='button'>
-                <button> 
-                        <Link to={redirect}>Next</Link>
-                </button>
+                <Link to={redirect}><button>Next</button></Link>
             </div>
         </div>
     )

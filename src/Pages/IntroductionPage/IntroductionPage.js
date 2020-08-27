@@ -9,6 +9,9 @@ import './IntroductionPage.Styles.css';
 
 import Header from '../../Components/Header/Header';
 import Body from '../../Components/Body/Body';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Axios from 'axios';
 
 class IntroductionPage extends Component {
@@ -22,8 +25,6 @@ class IntroductionPage extends Component {
         }
     }
 
-
-
     componentDidMount(){
 
         Axios.get('http://localhost:5000/user/'+this.props.match.params.id)
@@ -33,7 +34,7 @@ class IntroductionPage extends Component {
               CompanyName: response.data.company,
             })
             this.props.setCurrentUser(response.data)
-            alert('You are alloted with the company '+response.data.company.toUpperCase())
+            toast.success('You are alloted with the company '+response.data.company.toUpperCase())
           }
         })
         .catch((error) => {
@@ -75,19 +76,18 @@ class IntroductionPage extends Component {
         return allotedCompany
     }*/
     
-
     render(){
-
       if(localStorage.getItem('usertoken'))  
       {
         return (
             this.state.CompanyName?
             <div className='introduction-page'>
+            <ToastContainer className='alert' />
                 <div className='company-introduction'>
                     <Header heading={this.state.CompanyName} />
                     <Body body={this.state.info} />
                     <div className='button'>
-                        <button><Link to={'/comprehensionRules/'+this.state.CompanyName}>Comprehensions &#8594;</Link></button>
+                      <Link to={'/comprehensionRules/'+this.state.CompanyName}><button>Comprehensions &#8594;</button></Link>
                     </div>
                 </div>
             </div>
@@ -108,4 +108,8 @@ const mapDispatchToProps = dispatch => ({
   setCurrentUser: user => dispatch(setCurrentUser(user))
 });
 
-export default connect(null , mapDispatchToProps)(IntroductionPage);
+const mapStateToProps = (state) => ({
+  setCurrentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps , mapDispatchToProps)(IntroductionPage);

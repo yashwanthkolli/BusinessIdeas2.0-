@@ -28,11 +28,11 @@
     background-color: white;
 }
 
-.questions-page .button button a{
+.questions-page .button button{
     text-decoration: none;
     color: white;
 }
 
-.questions-page .button button:hover a{
+.questions-page .button button:hover{
     color: black;
 }

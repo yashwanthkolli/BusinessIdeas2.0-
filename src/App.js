@@ -16,6 +16,10 @@ import RnDQuestions from './Pages/RnDQuestions/RnDQuestions';
 import SalesComprehension from './Pages/SalesComprehension/SalesComprehension';
 import SalesQuestions from './Pages/SalesQuestions/SalesQuestions';
 import Timer from './Components/Timer/Timer';
+import RoundOneScore from './Pages/Round1Score/RoundOneScore';
+import { Provider } from 'react-redux';
+
+import store from './Redux/Store';
 
 class App extends Component{ 
   constructor(){
@@ -25,19 +29,20 @@ class App extends Component{
 
     }
     this.userUpdate=this.userUpdate.bind(this);
-
-}
+  }
 
   userUpdate (userObject) {
-  this.setState(userObject)
-}
+    this.setState(userObject)
+  }
 
   render(){
   return (
     <div className="App">
     <div className='timer'>
-        <Timer match={window.location.pathname} />
+      {window.location.pathname.substr(1,5) === 'intro' ? <Timer time={300} currentPath={window.location.pathname.substr(1,6)} /> : null}
     </div>
+    
+    <Provider store={store}>
     <Switch>
       <Route exact path='/' component={HomePage} />
       <Route exact path='/intro/:id' component={IntroductionPage} />
@@ -50,8 +55,9 @@ class App extends Component{
       <Route exact path='/comprehension/:companyName/ResdevQuestions' component={RnDQuestions} />
       <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
       <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
-      
+      <Route exact path='/round1/score' component={RoundOneScore} />
     </Switch>
+    </Provider>
     </div>
   );
   }

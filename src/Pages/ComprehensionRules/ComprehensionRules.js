@@ -2,16 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './ComprehensionRules.Styles.css';
+import Header from '../../Components/Header/Header';
 
 const ComprehensionRules = ({match}) => {
     const allotedCompanyName = match.params.companyName;
     if(localStorage.getItem('usertoken'))
     {
     return(
-        
         <div className='comprehension-rules-container'>
             <div className='comprehesion-rules'>
-                <h1 className='header'>Comprehension Round Rules</h1>
+                <Header heading='Round-1 Rules' />
                 <div className='rules'>
                     <ol>
                         <li>
@@ -32,7 +32,7 @@ const ComprehensionRules = ({match}) => {
                     </ol>
                 </div>
                 <div className='button'>
-                    <button><Link to={'/comprehension/'+allotedCompanyName+'/Production'}>Start Comprehension</Link></button>
+                    <Link to={'/comprehension/'+allotedCompanyName+'/Production'}><button>Start Comprehension</button></Link>
                 </div>
             </div>
         </div>

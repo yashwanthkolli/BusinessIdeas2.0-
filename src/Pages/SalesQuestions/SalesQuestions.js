@@ -21,7 +21,7 @@ export default class SalesQuestions extends Component {
         return (
             this.state.salesQuestions ?
             <div>
-                <Questions redirect={'/round2'} questions={this.state.salesQuestions} questionsName='Sales Questions' />
+                <Questions redirect={'/round1/score'} questions={this.state.salesQuestions} questionsName='Sales Questions' />
             </div>
             : <div className='loading'>Loading...</div>
         )
