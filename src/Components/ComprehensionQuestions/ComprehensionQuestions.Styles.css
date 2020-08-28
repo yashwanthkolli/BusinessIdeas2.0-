@@ -27,7 +27,7 @@
     border: 1px solid #242830;
 }
 
-.mcq-questions .mcq-container:before{
+.mcq-questions .hover:before{
     content: '';
     position: absolute;
     top: -2px;
@@ -40,16 +40,16 @@
     transform: skew(2deg, 2deg);
 }
 
-.mcq-container:hover::before{
+.hover:hover::before{
     transform: skew(0,0);
 }
 
-.mcq-container:hover{
+.hover:hover{
     transition: 0.5s;
     transform: scale(1.05);
 }
 
-.mcq-questions .mcq-container:after{
+.mcq-questions .hover:after{
     content: '';
     position: absolute;
     top: 0;

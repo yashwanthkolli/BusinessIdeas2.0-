@@ -25,32 +25,37 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
         const respons = response[response.length-1];
         respons.value === answer ? result.push(true)  : result.push(false)
         console.log(result[result.length-1])
+        console.log(document.getElementById(question))
         if(result[result.length-1] === true) {
-            updateScore(currentUser.score)
-            const points = {
-                score: currentUser.score
-            }
-            //Axios.post('http://localhost:5000/score/'+currentUser.currentUser._id, points)
-            //.then(res => console.log(res.data));
+             updateScore(currentUser.score)
+             const points = {
+                 score: currentUser.score
+             }
+             //Axios.post('http://localhost:5000/user/score/'+currentUser.currentUser._id, points)
+             //.then(res => console.log(res.data));
         }
-        var form = document.getElementById(respons.name)
+        var div = document.getElementById(respons.name)
+        var form = document.getElementById(respons.name+'form')
         var elements = form.elements
+        div.classList.remove('hover')
         for(var i=0; i<elements.length;i++){
             elements[i].disabled = true
         }
     }
     return(
-        <div className='mcq-container'>
+        <div>
+        <div  id={_id} className='mcq-container hover'>
             <div className='mcq' onChange={onChangeMcqs}>
                 {index<9? <h2>0{index+1}</h2>:<h2>{index+1}</h2>}
                 <h3>{question}</h3>
-                <form id={_id} onSubmit={onSubmitMcqs}>
+                <form id={_id+'form'} onSubmit={onSubmitMcqs}>
                     {
                         options.map( (option, index) => <div className='options' key={index+1}><input type='radio' name={_id} value={String.fromCharCode(97+index)} /><label>{option.toUpperCase()}</label></div> )
                     }
                     <button type='submit' id='submit-btn'>Submit</button>
                 </form>
             </div>
+        </div>
         </div>
     )
 }

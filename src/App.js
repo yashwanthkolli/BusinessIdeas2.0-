@@ -20,6 +20,7 @@ import RoundOneScore from './Pages/Round1Score/RoundOneScore';
 import { Provider } from 'react-redux';
 
 import store from './Redux/Store';
+import Round3Rules from './Pages/Round3Rules/Round3Rules';
 
 class App extends Component{ 
   constructor(){
@@ -39,7 +40,8 @@ class App extends Component{
   return (
     <div className="App">
     <div className='timer'>
-      {window.location.pathname.substr(1,5) === 'intro' ? <Timer time={300} currentPath={window.location.pathname.substr(1,6)} /> : null}
+      {window.location.pathname.substr(1,5) === 'intro' ? <Timer time={3600} currentPath='round1' /> : null}
+      {window.location.pathname.substr(1,6) === 'round3' ? <Timer time={3600} currentPath='round2' /> : null}
     </div>
     
     <Provider store={store}>
@@ -56,6 +58,7 @@ class App extends Component{
       <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
       <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
       <Route exact path='/round1/score' component={RoundOneScore} />
+      <Route exact patch='/round3/rules/:id' component={Round3Rules} />
     </Switch>
     </Provider>
     </div>

@@ -6,14 +6,36 @@ import './Timer.Styles.css'
 import { Redirect } from 'react-router-dom';
 
 const Timer = ({time, currentPath}) => {
-    console.log(currentPath)
-    return(
-        <Countdown date={Date.now() + time*1000}>
-        {
-            currentPath !== 'round1' ? <Redirect to='/round1/score' /> : console.log(currentPath)
-        }
-        </Countdown>
-    )
+    if(currentPath ==='round1'){
+        return(
+            <Countdown date={Date.now() + time*1000}>
+            {
+                <Redirect to='/round1/score' />
+            }
+            </Countdown>
+        )
+    }
+    if(currentPath === 'round2'){
+        return(
+            <Countdown date={Date.now() + time*1000}>
+            {
+                <Redirect to='/round2/score' />
+            }
+            </Countdown>
+        )
+    }
+    if(currentPath === 'round3'){
+        return(
+            <Countdown date={Date.now() + time*1000}>
+            {
+                <Redirect to='/round3/score' />
+            }
+            </Countdown>
+        )
+    }
+    else{
+        return(null)
+    }
 }
 
 

@@ -5,7 +5,7 @@ import './RoundOneScore.Styles.css'
 
 const RoundOneScore = ({currentUser}) => {
     const onclick = () => {
-        window.location = 'round2/'+currentUser.currentUser._id
+        window.location = '/round3/rules/'+currentUser.currentUser._id
     }
 
     return (

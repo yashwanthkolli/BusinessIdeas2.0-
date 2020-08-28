@@ -44,7 +44,7 @@ class IntroductionPage extends Component {
 
         Axios.get('http://localhost:5000/company/info')
         .then(res => res.data.map( company => company.name.toUpperCase() === this.state.CompanyName.toUpperCase() ?
-                this.setState({info: company.production})
+                this.setState({info: company.info})
                 : console.log()
             ))
     }

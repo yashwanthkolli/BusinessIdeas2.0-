@@ -15,7 +15,7 @@
     transition: 0.5s;
 }
 
-.mcq-container:hover .mcq h2{
+.hover:hover h2{
     top: -80px;
     opacity: 0.4;
 }
@@ -57,7 +57,7 @@
     visibility: hidden;
 }
 
-.mcq-container:hover button{
+.hover:hover button{
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
