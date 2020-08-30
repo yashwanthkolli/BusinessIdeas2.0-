@@ -7,3 +7,8 @@ export const updateScore = score => ({
     type: 'UPDATE_SCORE',
     payload: score
 })
+
+export const updateScoreCrisis = score => ({
+    tpye: 'UPDATE_SCORE_CRISIS',
+    payload: score
+})

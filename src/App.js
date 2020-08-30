@@ -21,6 +21,14 @@ import { Provider } from 'react-redux';
 
 import store from './Redux/Store';
 import Round3Rules from './Pages/Round3Rules/Round3Rules';
+import ProductionCrisis1 from './Pages/ProductionCrisis1/ProductionCrisis1';
+import ProductionCrisis2 from './Pages/ProductionCrisis2/ProductionCrisis2';
+import FinanceCrisis1 from './Pages/FinanceCrisis1/FinanceCrisis1';
+import FinanceCrisis2 from './Pages/FinanceCrisis2/FinanceCrisis2';
+import RndCrisis1 from './Pages/RndCrisis1/RndCrisis1';
+import RndCrisis2 from './Pages/RndCrisis2/RndCrisis2';
+import SalesCrisis1 from './Pages/SalesCrisis1/SalesCrisis1';
+import SalesCrisis2 from './Pages/SalesCrisis2/SalesCrisis2';
 
 class App extends Component{ 
   constructor(){
@@ -41,7 +49,7 @@ class App extends Component{
     <div className="App">
     <div className='timer'>
       {window.location.pathname.substr(1,5) === 'intro' ? <Timer time={3600} currentPath='round1' /> : null}
-      {window.location.pathname.substr(1,6) === 'round3' ? <Timer time={3600} currentPath='round2' /> : null}
+      {window.location.pathname.substr(1,6) === 'round3' ? <Timer time={3600} currentPath='round3' /> : null}
     </div>
     
     <Provider store={store}>
@@ -58,7 +66,15 @@ class App extends Component{
       <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
       <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
       <Route exact path='/round1/score' component={RoundOneScore} />
-      <Route exact patch='/round3/rules/:id' component={Round3Rules} />
+      <Route exact path='/crisis/production/1' component={ProductionCrisis1} />
+      <Route exact path='/crisis/production/2' component={ProductionCrisis2} />
+      <Route exact path='/crisis/finance/1' component={FinanceCrisis1} />
+      <Route exact path='/crisis/finance/2' component={FinanceCrisis2} />
+      <Route exact path='/crisis/rnd/1' component={RndCrisis1} />
+      <Route exact path='/crisis/rnd/2' component={RndCrisis2} />
+      <Route exact path='/crisis/sales/1' component={SalesCrisis1} />
+      <Route exact path='/crisis/sales/2' component={SalesCrisis2} />
+      <Route exact path='/round3/rules/:id' component={Round3Rules} />
     </Switch>
     </Provider>
     </div>

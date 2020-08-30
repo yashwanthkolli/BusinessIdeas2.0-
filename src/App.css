@@ -19,3 +19,7 @@ body::-webkit-scrollbar-thumb{
   font-size: 24px;
   z-index: 2;
 }
+
+#root{
+  position: relative;
+}

@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import Header from '../../Components/Header/Header';
 
 const Round3Rules = () => {
-    if(localStorage.getItem('usertoken'))
-    {
     return(
         <div className='comprehension-rules-container'>
             <div className='comprehesion-rules'>
@@ -39,15 +37,11 @@ const Round3Rules = () => {
                     </ol>
                 </div>
                 <div className='button'>
-                    <Link to={'#'}><button>Start Comprehension</button></Link>
+                    <Link to='/crisis/production/1'><button>Crisis</button></Link>
                 </div>
             </div>
         </div>
     )
-    }
-    else{
-        window.location='/';
-    }
 }
 
 export default Round3Rules;

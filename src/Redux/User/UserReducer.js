@@ -15,6 +15,11 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 score: action.payload+1000
             }
+        case 'UPDATE_SCORE_CRISIS':
+            return{
+                ...state,
+                score : action.payload.currentScore + action.payload.addScore
+            }
         default:
             return state;
     }

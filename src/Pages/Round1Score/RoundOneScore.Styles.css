@@ -1,8 +1,3 @@
-section{
-    width: 100%;
-    height: 100%;
-}
-
 .round-one-score-page{
     width: 100%;
     height: 100%;
@@ -10,6 +5,8 @@ section{
     color: white;
     text-align: center;
     position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
 .round-one-score{
@@ -52,4 +49,29 @@ section{
 .round-one-score button:active {
     transform: scale(0.95);
     transition: all 0.2s;
+}
+
+.square{
+    position: absolute;
+    background: #2ba15f;
+    pointer-events: none;
+    z-index: 0;
+    animation: popUp 5s linear infinite;
+}
+
+@keyframes popUp{
+    0%{
+        transform: scale(0) translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    10%{
+        opacity: 1;
+    }
+    90%{
+        opacity: 1;
+    }
+    100%{
+        transform: scale(1) translateY(-500%) rotate(360deg);
+        opacity: 0;
+    }
 }
