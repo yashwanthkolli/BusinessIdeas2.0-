@@ -16,15 +16,12 @@ const Crisis = ({heading, crisis, question, options, redirect, currentUser, upda
     }
 
     const onsubmit = (e) => {
+        e.preventDefault();
+        document.getElementById('redirect').click()
         if(response.length>0){
-            e.preventDefault();
             const respons = response[response.length-1];
             console.log(respons.value)
             updateScoreCrisis({currentScore: currentUser.score, addScore: respons.value})
-        }
-        else{
-            e.preventDefault();
-            console.log()
         }
     }
 
@@ -36,8 +33,9 @@ const Crisis = ({heading, crisis, question, options, redirect, currentUser, upda
             {
                 options.map( (option, index) => <div className='options' key={index+1}><input type='radio' name='prod-crisis-1' value={option.value} /><label>{option.option}</label></div>)
             }
-                <button type='submit'>Submit</button>
+                <button type='submit' id='submit'>Submit</button>
             </form>
+            <Link to={redirect}><button id='redirect'></button></Link>
         </div>
     )
 }
