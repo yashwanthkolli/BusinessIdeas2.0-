@@ -16,7 +16,7 @@ export default class RnDQuestions extends Component {
     }
 
     render() {
-        if(localStorage.getItem('usertoken')!==null)
+        if(sessionStorage.usertoken)
         {
             console.log(localStorage.getItem('userToken'))
         return (

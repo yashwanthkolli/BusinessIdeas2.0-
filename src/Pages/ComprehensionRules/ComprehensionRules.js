@@ -6,7 +6,7 @@ import Header from '../../Components/Header/Header';
 
 const ComprehensionRules = ({match}) => {
     const allotedCompanyName = match.params.companyName;
-    if(localStorage.getItem('usertoken'))
+    if(sessionStorage.usertoken)
     {
     return(
         <div className='comprehension-rules-container'>

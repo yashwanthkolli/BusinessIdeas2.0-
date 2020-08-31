@@ -9,6 +9,6 @@ export const updateScore = score => ({
 })
 
 export const updateScoreCrisis = score => ({
-    tpye: 'UPDATE_SCORE_CRISIS',
+    type: 'UPDATE_SCORE_CRISIS',
     payload: score
 })

@@ -13,7 +13,7 @@ export default class HomePage extends Component {
             redirectTo: false,
             company:'',
             index:'',
-            token:'',
+            token:'null',
             
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -44,7 +44,7 @@ export default class HomePage extends Component {
                         index:res.data._id,
                         token:res.data.token,
                     })
-                    localStorage.setItem('usertoken', this.state.token);
+                    sessionStorage.setItem('usertoken', this.state.token);
                     window.location=`/intro/`+this.state.index;
                 }
                 

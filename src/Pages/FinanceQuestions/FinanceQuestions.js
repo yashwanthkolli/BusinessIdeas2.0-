@@ -20,7 +20,7 @@ export default class FinanceQuestions extends Component {
     }
 
     render() {
-        if(localStorage.getItem('usertoken'))
+        if(sessionStorage.usertoken)
         {
         return (
             

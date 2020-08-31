@@ -16,15 +16,15 @@ export default class SalesQuestions extends Component {
     }
 
     render() {
-        if(localStorage.getItem('usertoken'))
+        if(sessionStorage.usertoken)
         {
-        return (
-            this.state.salesQuestions ?
-            <div>
-                <Questions redirect={'/round1/score'} questions={this.state.salesQuestions} questionsName='Sales Questions' />
-            </div>
-            : <div className='loading'>Loading...</div>
-        )
+            return (
+                this.state.salesQuestions ?
+                <div>
+                    <Questions redirect={'/round1/score'} questions={this.state.salesQuestions} questionsName='Sales Questions' />
+                </div>
+                : <div className='loading'>Loading...</div>
+            )
         }
         else{window.location='/';}
     }

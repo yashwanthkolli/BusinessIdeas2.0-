@@ -25,7 +25,7 @@ class RndCrisis2 extends Component {
         return (
             this.state.crisis && this.state.question && this.state.options ? 
             <div className='crisis-page'>
-                <Crisis crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/sales/1'/>
+                <Crisis heading='R & D 02' crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/sales/1'/>
             </div>
             : <div className='loading'>Loading...</div>
         )

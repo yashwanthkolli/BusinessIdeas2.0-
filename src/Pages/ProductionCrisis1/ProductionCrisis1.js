@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Crisis from '../../Components/Crisis/Crisis'
+import { Redirect } from 'react-router-dom'
 
 class ProductionCrisis1 extends Component {
     constructor(){
@@ -24,8 +25,8 @@ class ProductionCrisis1 extends Component {
     render() {
         return (
             this.state.crisis && this.state.question && this.state.options ? 
-            <div>
-                <Crisis crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/production/2'/>
+            <div className='crisis-page'>
+                <Crisis heading='Production 01' crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/production/2'/>
             </div>
             : <div className='loading'>Loading...</div>
         )

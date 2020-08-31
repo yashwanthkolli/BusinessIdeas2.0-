@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import React, { Component } from 'react'
 import { connect } from 'react-redux';
 
 import './RoundOneScore.Styles.css'
@@ -44,16 +43,21 @@ class RoundOneScore extends Component{
 
     render(){
         setInterval(() => {this.createSquare()}, 150);
-        return (
-            <div className='round-one-score-page'>
-                <div className='round-one-score'>
-                    <p className='round-text'>Round-1 Completed!!</p>
-                    <p className='score-text'>Your score is</p>
-                    <p className='score'>Rs. {this.props.currentUser.score}</p>
-                    <Link to={'/round3/rules/'+this.props.currentUser.currentUser._id}><button onClick={onclick}>Round-2</button></Link>
+        if(sessionStorage.usertoken){
+            return (
+                <div className='round-one-score-page'>
+                    <div className='round-one-score'>
+                        <p className='round-text'>Round-1 Completed!!</p>
+                        <p className='score-text'>Your score is</p>
+                        <p className='score'>Rs. {this.props.currentUser.score}</p>
+                        <button onClick={onclick}>Round-2</button>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        }
+        else{
+            window.location='/';
+        }
     }
 }
 

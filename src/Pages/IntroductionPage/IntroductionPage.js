@@ -48,36 +48,9 @@ class IntroductionPage extends Component {
                 : console.log()
             ))
     }
-
-
-
-   /* componentDidMount(){
-        Axios.get('http://localhost:5000/company/info')
-        .then(res => this.setState({Companies: res.data}))
-    }
-
-    componentDidUpdate(){
-        
-        axios.get('http://localhost:5000/user/'+this.props.match.params.id)
-        .then(response => {
-          if (response.data.length > 0) {
-            this.setState({
-              name: response.data.company,
-            })
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        
-        
-        
-        /*const allotedCompany = this.state.Companies[Math.floor(Math.random()*this.state.Companies.length)]
-        return allotedCompany
-    }*/
     
     render(){
-      if(localStorage.getItem('usertoken'))  
+      if(sessionStorage.usertoken)  
       {
         return (
             this.state.CompanyName?

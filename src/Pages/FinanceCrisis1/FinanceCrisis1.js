@@ -24,8 +24,8 @@ class FinanceCrisis1 extends Component {
     render() {
         return (
             this.state.crisis && this.state.question && this.state.options ? 
-            <div>
-                <Crisis crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/finance/2'/>
+            <div className='crisis-page'>
+                <Crisis heading='Finance 01' crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/finance/2'/>
             </div>
             : <div className='loading'>Loading...</div>
         )

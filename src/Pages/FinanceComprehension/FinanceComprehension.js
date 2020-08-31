@@ -21,7 +21,7 @@ export default class FinanceComprehension extends Component {
     }
 
     render() {
-        if(localStorage.getItem('usertoken'))
+        if(sessionStorage.usertoken)
         {
         return (
             this.state.financeComprehension ? 

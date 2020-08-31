@@ -21,15 +21,15 @@ export default class SalesComprehension extends Component {
     }
 
     render() {
-        if(localStorage.getItem('usertoken'))
+        if(sessionStorage.usertoken)
         {
-        return (
-            this.state.salesComprehension ? 
-            <div className='sales-comprehension-page'>
-               <Comprehension comprehensionName='sales' comprehension={this.state.salesComprehension} redirect={this.props.match.url+'Questions'} />
-            </div>
-            : <div className='loading'>Loading...</div>
-        )
+            return (
+                this.state.salesComprehension ? 
+                <div className='sales-comprehension-page'>
+                <Comprehension comprehensionName='sales' comprehension={this.state.salesComprehension} redirect={this.props.match.url+'Questions'} />
+                </div>
+                : <div className='loading'>Loading...</div>
+            )
         }
         else{window.location='/';}
     }
