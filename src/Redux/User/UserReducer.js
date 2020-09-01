@@ -18,7 +18,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case 'UPDATE_SCORE_CRISIS':
             return{
                 ...state,
-                score: action.payload.currentScore + eval(action.payload.addScore)
+                score: action.payload.currentScore + parseInt(action.payload.addScore)
             }
         default:
             return state;

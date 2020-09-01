@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import Crisis from '../../Components/Crisis/Crisis'
+import { connect } from 'react-redux'
+import Axios from 'axios'
 
 class ProductionCrisis2 extends Component {
     constructor(){
@@ -7,19 +9,18 @@ class ProductionCrisis2 extends Component {
         this.state = {
             crisis: null,
             question: null,
-            options: null
+            options: []
         }
     }
 
     componentDidMount(){
-        fetch('https://baconipsum.com/api/?type=meat-and-filler')
-        .then(res => res.json())
-        .then(data => this.setState({
-            crisis: data[0],
-            question: data[0],
-            options: [{option: data[0], value: 4000}, {option: data[0], value: 3000}, {option: data[0], value: 2000}, {option: data[0], value: 1000}]
-        }))
-    }
+        Axios.get('http://localhost:5000/' + this.props.currentUser.currentUser.company + '/getcrisisproduction')
+        .then(res => this.setState({
+            crisis: res.data[1].passage,
+            question: res.data[1].question,
+            options: [res.data[1].option1, res.data[1].option2, res.data[1].option3, res.data[1].option4]
+        })
+    )}
 
     render() {
         return (
@@ -32,4 +33,8 @@ class ProductionCrisis2 extends Component {
     }
 }
 
-export default ProductionCrisis2;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+});
+
+export default connect(mapStateToProps)(ProductionCrisis2);

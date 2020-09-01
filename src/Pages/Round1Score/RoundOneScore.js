@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 import './RoundOneScore.Styles.css'
 
@@ -9,7 +10,7 @@ class RoundOneScore extends Component{
     }
 
     createSquare = () => {
-        const section = document.getElementById('root');
+        const section = document.getElementById('round1_score');
         const square = document.createElement('span');
         square.setAttribute('class', 'square')
 
@@ -34,23 +35,25 @@ class RoundOneScore extends Component{
 
         square.style.background = bg;
 
-        section.appendChild(square)
+        if(document.getElementById('round1_score')){
+            section.appendChild(square)
+        }
 
         setTimeout(() => {
             square.remove() 
         }, 5000)
     }
-
+    
     render(){
         setInterval(() => {this.createSquare()}, 150);
         if(sessionStorage.usertoken){
             return (
-                <div className='round-one-score-page'>
+                <div className='round-one-score-page' id='round1_score'>
                     <div className='round-one-score'>
                         <p className='round-text'>Round-1 Completed!!</p>
                         <p className='score-text'>Your score is</p>
                         <p className='score'>Rs. {this.props.currentUser.score}</p>
-                        <button onClick={onclick}>Round-2</button>
+                        <Link to={'/round3/rules/'+this.props.currentUser.currentUser._id}><button>Round-2</button></Link>
                     </div>
                 </div>
             )

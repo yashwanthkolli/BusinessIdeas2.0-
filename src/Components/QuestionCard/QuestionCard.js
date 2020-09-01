@@ -19,20 +19,23 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
         const data = {name, value}
         response.push(data)
     }
-
+    
     const onSubmitMcqs = (e) => {
         e.preventDefault();
         const respons = response[response.length-1];
         respons.value === answer ? result.push(true)  : result.push(false)
-        console.log(result[result.length-1])
-        console.log(document.getElementById(question))
         if(result[result.length-1] === true) {
              updateScore(currentUser.score)
+             
              const points = {
-                 score: currentUser.score
+                 email:currentUser.currentUser.email,
+                 password:currentUser.currentUser.password,
+                 company:currentUser.currentUser.company,
+                 score: currentUser.score + 1000,
+                 token:currentUser.currentUser.token,
              }
-             //Axios.post('http://localhost:5000/user/score/'+currentUser.currentUser._id, points)
-             //.then(res => console.log(res.data));
+             var id = currentUser.currentUser._id;
+             Axios.post('http://localhost:5000/user/score/'+id, points)
         }
         var div = document.getElementById(respons.name)
         var form = document.getElementById(respons.name+'form')
