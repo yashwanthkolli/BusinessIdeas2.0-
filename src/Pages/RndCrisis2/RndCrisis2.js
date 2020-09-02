@@ -23,13 +23,16 @@ class RndCrisis2 extends Component {
     )}
 
     render() {
-        return (
-            this.state.crisis && this.state.question && this.state.options ? 
-            <div className='crisis-page'>
-                <Crisis heading='R & D 02' crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/sales/1'/>
-            </div>
-            : <div className='loading'>Loading...</div>
-        )
+        if(sessionStorage.usertoken){
+            return (
+                this.state.crisis && this.state.question && this.state.options ? 
+                <div className='crisis-page'>
+                    <Crisis heading='R & D 02' crisis={this.state.crisis} question={this.state.question} options={this.state.options} redirect='/crisis/sales/1'/>
+                </div>
+                : <div className='loading'>Loading...</div>
+            )
+        }
+        else{window.location='/';} 
     }
 }
 
