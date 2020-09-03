@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import Axios from 'axios'
 
 import './Crisis.Styles.css';
 import { Link } from 'react-router-dom';
@@ -8,19 +9,43 @@ import { updateScoreCrisis } from '../../Redux/User/UserActions';
 const Crisis = ({heading, crisis, question, options, redirect, currentUser, updateScoreCrisis}) => {
 
     const response=[]
+    let score=0
 
     const onchange = (e) => {
         const {name,value} =e.target;
         const data = {name, value}
         response.push(data)
     }
+    useEffect(()=>{
 
+        Axios.get('http://localhost:5000/user/'+currentUser.currentUser._id)
+        .then(response => {
+          if (response.status === 200) {
+            
+                score=response.data.score;
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    })
     const onsubmit = (e) => {
         e.preventDefault();
         document.getElementById('redirect').click()
         if(response.length>0){
             const respons = response[response.length-1];
             updateScoreCrisis({currentScore: currentUser.score, addScore: respons.value})
+            score=score+parseInt(respons.value)
+            console.log(score);
+            const points = {
+                email:currentUser.currentUser.email,
+                password:currentUser.currentUser.password,
+                company:currentUser.currentUser.company,
+                score: score,
+                token:currentUser.currentUser.token,
+            }
+            var id = currentUser.currentUser._id;
+            Axios.post('http://localhost:5000/user/score/'+id, points)
         }
     }
 
