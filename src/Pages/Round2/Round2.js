@@ -55,7 +55,7 @@ class StockMarket extends Component {
         if(investedAmount > 0){
             if(numberOfShares >= selectedCompany.min){
                 this.setState({capital: capital-investedAmount})
-                investedCompanies.push({name: selectedCompany.name, investedAmount: investedAmount, returns: selectedCompany.profitpercent})
+                investedCompanies.push({name: selectedCompany.name, investedAmount: investedAmount, returns: (selectedCompany.profitpercent+100)*investedAmount/100})
                 this.props.updateInvestedCompanies(investedCompanies)
             }else{
                 alert('Minimum no of shares are not purchased')
@@ -65,8 +65,13 @@ class StockMarket extends Component {
         }
     }
 
+    score = () => {
+        const {investedCompanies} = this.state
+        return(investedCompanies.reduce((a,b) => a + b.returns, 0).toFixed(2))
+    }
+
     render() {
-        console.log(this.state.investedCompanies, this.props.currentUser)
+        console.log(this.score())
         return (
             this.state.companies ?
             <div className='round2-page'>
