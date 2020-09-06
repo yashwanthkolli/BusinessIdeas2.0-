@@ -7,7 +7,7 @@ import './Round2.Styles.css'
 import Axios from 'axios';
 import Graph from '../../Components/Graph/Graph';
 import { connect } from 'react-redux';
-import { updateInvestedCompanies } from '../../Redux/User/UserActions';
+import { updateInvestedCompanies, updateInvestmentScore } from '../../Redux/User/UserActions';
 
 class StockMarket extends Component {
     constructor(){
@@ -23,7 +23,12 @@ class StockMarket extends Component {
     }
 
     componentDidMount(){
-        Axios.get('http://localhost:5000/stock/companylist')
+        Axios.get('http://localhost:5000/stock/companylist',
+        {
+          headers:{
+            "authorization":"Bearer "+sessionStorage.usertoken
+          }
+        })
         .then(res => this.setState({companies: res.data}))
 
         this.setState({capital: this.props.currentUser.currentUser.score})
@@ -63,6 +68,7 @@ class StockMarket extends Component {
                     }else{
                         investedCompanies.push({name: selectedCompany.name, investedAmount: investedAmount, returns: (selectedCompany.profitpercent+100)*investedAmount/100})
                     }
+                    this.props.updateInvestmentScore(this.score())
                     this.props.updateInvestedCompanies(investedCompanies)
                 }else{
                     alert('Cannot invest in more than 2 stocks')
@@ -77,11 +83,11 @@ class StockMarket extends Component {
 
     score = () => {
         const {investedCompanies} = this.state
-        return(investedCompanies.reduce((a,b) => a + b.returns, 0).toFixed(2))
+        const returns = investedCompanies.reduce((a,b) => a + b.returns, 0).toFixed(2)
+        return(parseFloat(returns)+parseFloat(this.state.capital.toFixed(2))-parseFloat(this.state.investedAmount.toFixed(2)))
     }
 
     render() {
-        console.log(this.score())
         return (
             this.state.companies ?
             <div className='round2-page'>
@@ -156,7 +162,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    updateInvestedCompanies: investedCompanies => dispatch(updateInvestedCompanies(investedCompanies))
+    updateInvestedCompanies: investedCompanies => dispatch(updateInvestedCompanies(investedCompanies)),
+    updateInvestmentScore: score => dispatch(updateInvestmentScore(score))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockMarket);

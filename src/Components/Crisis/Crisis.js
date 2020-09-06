@@ -36,7 +36,6 @@ const Crisis = ({heading, crisis, question, options, redirect, currentUser, upda
             const respons = response[response.length-1];
             updateScoreCrisis({currentScore: currentUser.score, addScore: respons.value})
             score=score+parseInt(respons.value)
-            console.log(score);
             const points = {
                 email:currentUser.currentUser.email,
                 password:currentUser.currentUser.password,
