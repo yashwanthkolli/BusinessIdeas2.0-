@@ -13,7 +13,7 @@ class StockMarket extends Component {
     constructor(){
         super()
         this.state = {
-            capital: 0,
+            capital: 100000,
             companies: null,
             selectedCompany: null,
             isPopUpOpen: false,
@@ -26,7 +26,7 @@ class StockMarket extends Component {
         Axios.get('http://localhost:5000/stock/companylist')
         .then(res => this.setState({companies: res.data}))
 
-        this.setState({capital: this.props.currentUser.currentUser.score})
+        //this.setState({capital: this.props.currentUser.currentUser.score})
     }
 
     onclick = (e) => {
@@ -54,9 +54,19 @@ class StockMarket extends Component {
         this.setState({isPopUpOpen: false})
         if(investedAmount > 0){
             if(numberOfShares >= selectedCompany.min){
-                this.setState({capital: capital-investedAmount})
-                investedCompanies.push({name: selectedCompany.name, investedAmount: investedAmount, returns: (selectedCompany.profitpercent+100)*investedAmount/100})
-                this.props.updateInvestedCompanies(investedCompanies)
+                if(investedCompanies.length < 2){
+                    this.setState({capital: capital-investedAmount})
+                    const existingCompany = investedCompanies.find((company) => company.name === selectedCompany.name)
+                    if(existingCompany){
+                        existingCompany.investedAmount = existingCompany.investedAmount + investedAmount
+                        existingCompany.returns = (selectedCompany.profitpercent+100)*existingCompany.investedAmount/100
+                    }else{
+                        investedCompanies.push({name: selectedCompany.name, investedAmount: investedAmount, returns: (selectedCompany.profitpercent+100)*investedAmount/100})
+                    }
+                    this.props.updateInvestedCompanies(investedCompanies)
+                }else{
+                    alert('Cannot invest in more than 2 stocks')
+                }
             }else{
                 alert('Minimum no of shares are not purchased')
             }
