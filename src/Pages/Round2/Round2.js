@@ -13,7 +13,7 @@ class StockMarket extends Component {
     constructor(){
         super()
         this.state = {
-            capital: 100000,
+            capital: 0,
             companies: null,
             selectedCompany: null,
             isPopUpOpen: false,
@@ -26,7 +26,7 @@ class StockMarket extends Component {
         Axios.get('http://localhost:5000/stock/companylist')
         .then(res => this.setState({companies: res.data}))
 
-        //this.setState({capital: this.props.currentUser.currentUser.score})
+        this.setState({capital: this.props.currentUser.currentUser.score})
     }
 
     onclick = (e) => {
