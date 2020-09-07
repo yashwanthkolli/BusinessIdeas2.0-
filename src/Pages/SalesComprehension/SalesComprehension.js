@@ -3,8 +3,9 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './SalesComprehension.Styles.css'
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class SalesComprehension extends Component {
+class SalesComprehension extends Component {
     constructor(){
         super()
         this.state={
@@ -39,3 +40,9 @@ export default class SalesComprehension extends Component {
         else{window.location='/';}
     }
 }
+
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(SalesComprehension);

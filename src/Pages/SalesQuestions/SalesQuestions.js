@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
+import { connect } from 'react-redux';
 
-export default class SalesQuestions extends Component {
+class SalesQuestions extends Component {
     constructor(){
         super()
         this.state = {
@@ -34,3 +35,9 @@ export default class SalesQuestions extends Component {
         else{window.location='/';}
     }
 }
+
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(SalesQuestions);

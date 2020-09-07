@@ -3,8 +3,9 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './RnDComprehension.Styles.css'
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class RnDComprehension extends Component {
+class RnDComprehension extends Component {
     constructor(){
         super()
         this.state={
@@ -39,3 +40,9 @@ export default class RnDComprehension extends Component {
         else{window.location='/';}
     }
 }
+
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(RnDComprehension);

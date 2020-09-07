@@ -3,8 +3,9 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './ProductionComprehension.Styles.css'
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
-export default class ProductionComprehension extends Component {
+class ProductionComprehension extends Component {
     constructor(){
         super()
         this.state={
@@ -41,3 +42,9 @@ export default class ProductionComprehension extends Component {
         else{window.location='/';}
     }
 }
+
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(ProductionComprehension)
