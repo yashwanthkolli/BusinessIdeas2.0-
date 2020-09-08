@@ -29,17 +29,12 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
                 updateScore(currentUser.score)
                 
                 const points = {
-                    email:currentUser.currentUser.email,
-                    password:currentUser.currentUser.password,
-                    company:currentUser.currentUser.company,
-                    score: currentUser.score + 1000,
-                    token:currentUser.currentUser.token,
-                    invest:currentUser.currentUser.invest,
-                    page:currentUser.currentUser.page,
-                    max:currentUser.currentUser.max
+                    
+                    score1: currentUser.score1 + 1000,
+                    
                 }
                 var id = currentUser.currentUser._id;
-                Axios.post('http://localhost:5000/user/score/'+id, points)
+                Axios.post('http://localhost:5000/user/score1/'+id, points)
             }
             var div = document.getElementById(respons.name)
             var form = document.getElementById(respons.name+'form')

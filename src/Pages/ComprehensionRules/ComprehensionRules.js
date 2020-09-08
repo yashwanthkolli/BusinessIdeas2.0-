@@ -5,10 +5,18 @@ import { Link } from 'react-router-dom';
 import './ComprehensionRules.Styles.css';
 import Header from '../../Components/Header/Header';
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
-const ComprehensionRules = ({match}) => {
+const ComprehensionRules = ({match, currentUser}) => {
     
     const allotedCompanyName = match.params.companyName;
+
+    useEffect(()=>{
+        const route = {
+            path:'/comprehension/'+allotedCompanyName+'/Production',
+          }
+          Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
+    })
    
 
     
@@ -49,4 +57,8 @@ const ComprehensionRules = ({match}) => {
     }
 }
 
-export default ComprehensionRules;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(ComprehensionRules);

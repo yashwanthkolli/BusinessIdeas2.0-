@@ -1,12 +1,21 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 
 import './Questions.Styles.css';
 
 import Header from '../Header/Header';
 import ComprehensionQuestions from '../ComprehensionQuestions/ComprehensionQuestions';
+import { connect } from 'react-redux';
+import Axios from 'axios';
 
-const Questions = ({redirect, questions, questionsName}) => {
+const Questions = ({redirect, questions, questionsName, currentUser}) => {
+    useEffect(()=>{
+        const route = {
+            path: redirect,
+          }
+          Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
+    })
+
     return(
         <div className='questions-page'>
             <Header heading={questionsName} />
@@ -18,4 +27,8 @@ const Questions = ({redirect, questions, questionsName}) => {
     )
 }
 
-export default Questions;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(Questions);

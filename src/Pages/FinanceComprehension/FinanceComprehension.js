@@ -3,7 +3,6 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './FinanceComprehension.Styles.css'
 import Axios from 'axios';
-import { connect } from 'react-redux';
 
 class FinanceComprehension extends Component {
     constructor(){
@@ -32,7 +31,7 @@ class FinanceComprehension extends Component {
         return (
             this.state.financeComprehension ? 
             <div className='finance-comprehension-page'>
-               <Comprehension comprehensionName='finance' comprehension={this.state.financeComprehension} redirect={this.props.match.url+'Questions'} />
+               <Comprehension comprehensionName='finance' comprehension={this.state.financeComprehension} currentPath={this.props.match.url} redirect={this.props.match.url+'Questions'} />
             </div>
             : <div className='loading'>Loading...</div>
         )
@@ -40,9 +39,4 @@ class FinanceComprehension extends Component {
         else{window.location='/';}
     }
 }
-
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(FinanceComprehension);
+export default FinanceComprehension;

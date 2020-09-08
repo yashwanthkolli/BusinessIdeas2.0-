@@ -3,8 +3,7 @@ import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
 import { toast, ToastContainer } from 'react-toastify';
 
-import './ProductionQuestion.Styles.css'
-import { connect } from 'react-redux';
+import './ProductionQuestion.Styles.css';
 
 class ProductionQuestions extends Component {
     constructor(){
@@ -41,8 +40,4 @@ class ProductionQuestions extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(ProductionQuestions);
+export default ProductionQuestions;

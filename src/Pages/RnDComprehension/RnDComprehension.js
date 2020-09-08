@@ -3,7 +3,7 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './RnDComprehension.Styles.css'
 import Axios from 'axios';
-import { connect } from 'react-redux';
+
 
 class RnDComprehension extends Component {
     constructor(){
@@ -32,7 +32,7 @@ class RnDComprehension extends Component {
         return (
             this.state.rndComprehension ? 
             <div className='rnd-comprehension-page'>
-               <Comprehension comprehensionName='r&d' comprehension={this.state.rndComprehension} redirect={this.props.match.url+'Questions'} />
+               <Comprehension comprehensionName='r&d' comprehension={this.state.rndComprehension} currentPath={this.props.match.url} redirect={this.props.match.url+'Questions'} />
             </div>
             : <div className='loading'>Loading...</div>
         )
@@ -41,8 +41,4 @@ class RnDComprehension extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(RnDComprehension);
+export default RnDComprehension;

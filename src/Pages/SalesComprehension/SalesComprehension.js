@@ -3,7 +3,7 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './SalesComprehension.Styles.css'
 import Axios from 'axios';
-import { connect } from 'react-redux';
+
 
 class SalesComprehension extends Component {
     constructor(){
@@ -32,7 +32,7 @@ class SalesComprehension extends Component {
             return (
                 this.state.salesComprehension ? 
                 <div className='sales-comprehension-page'>
-                <Comprehension comprehensionName='sales' comprehension={this.state.salesComprehension} redirect={this.props.match.url+'Questions'} />
+                <Comprehension comprehensionName='sales' comprehension={this.state.salesComprehension} currentPath={this.props.match.url} redirect={this.props.match.url+'Questions'} />
                 </div>
                 : <div className='loading'>Loading...</div>
             )
@@ -41,8 +41,4 @@ class SalesComprehension extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(SalesComprehension);
+export default SalesComprehension;

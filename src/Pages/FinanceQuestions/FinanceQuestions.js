@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
-import { connect } from 'react-redux';
 
 class FinanceQuestions extends Component {
     constructor(){
@@ -12,8 +11,6 @@ class FinanceQuestions extends Component {
     }
 
     componentDidMount(){
-        
-        
         Axios.get('http://localhost:5000/'+this.props.match.params.companyName+'/getfinance',
         {
           headers:{
@@ -21,8 +18,6 @@ class FinanceQuestions extends Component {
           }
         })
         .then(res => this.setState({financeQuestions: res.data}))
-        
-       
     }
 
     render() {
@@ -41,8 +36,4 @@ class FinanceQuestions extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(FinanceQuestions);
+export default FinanceQuestions;

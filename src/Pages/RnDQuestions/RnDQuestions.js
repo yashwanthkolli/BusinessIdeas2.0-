@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
-import { connect } from 'react-redux';
 
 class RnDQuestions extends Component {
     constructor(){
@@ -39,8 +38,4 @@ class RnDQuestions extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(RnDQuestions);
+export default RnDQuestions;

@@ -11,7 +11,6 @@ import Header from '../../Components/Header/Header';
 import Body from '../../Components/Body/Body';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import ComprehensionRules from '../ComprehensionRules/ComprehensionRules';
 import Axios from 'axios';
 
 
@@ -22,6 +21,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = (state) => ({
   setCurrentUser: state.user.currentUser
 })
+
+
 
 class IntroductionPage extends Component {
     constructor(){
@@ -36,7 +37,6 @@ class IntroductionPage extends Component {
     }
 
     componentDidMount(){
-
         Axios.get('http://localhost:5000/user/'+this.props.match.params.id)
         .then(response => {
           if (response.status === 200) {
@@ -44,11 +44,7 @@ class IntroductionPage extends Component {
               CompanyName: response.data.company,
               
             })
-            if(response.data.page==2)
-            {
-              return <ComprehensionRules/>
-             
-            }
+            
             this.props.setCurrentUser(response.data)
             toast.success('You are alloted with the company '+response.data.company.toUpperCase())
           }
@@ -69,6 +65,12 @@ class IntroductionPage extends Component {
                 this.setState({info: company.info})
                 : console.log()
             ))
+
+        //ADDING PATH
+        const route = {
+          path:"/intro/"+this.props.match.params.id,
+        }
+        Axios.post('http://localhost:5000/user/path/'+this.props.match.params.id,route)
         
     }
     

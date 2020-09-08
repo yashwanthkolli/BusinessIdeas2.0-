@@ -110,7 +110,7 @@ class StockMarket extends Component {
                             }
                             </div>
                         </div>
-                        <Link to={'/round2/rules/'+this.props.currentUser.currentUser._id}><button>Round 3</button></Link>
+                        <Link to={'/round3/rules/'+this.props.currentUser.currentUser._id}><button>Round 3</button></Link>
                         <Modal isOpen={this.state.isPopUpOpen} onRequestClose={() => this.setState({isPopUpOpen: false})}>
                         {
                             this.state.selectedCompany ? 

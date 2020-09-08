@@ -3,7 +3,6 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './ProductionComprehension.Styles.css'
 import Axios from 'axios';
-import { connect } from 'react-redux';
 
 class ProductionComprehension extends Component {
     constructor(){
@@ -12,6 +11,8 @@ class ProductionComprehension extends Component {
             productionComprehension: ''
         }
     }
+
+    
 
     componentDidMount(){
         Axios.get('http://localhost:5000/company/info',
@@ -34,7 +35,7 @@ class ProductionComprehension extends Component {
         return (
             this.state.productionComprehension ? 
             <div className='production-comprehension-page'>
-               <Comprehension comprehensionName='production' comprehension={this.state.productionComprehension} redirect={this.props.match.url+'Questions'} />
+               <Comprehension comprehensionName='production' comprehension={this.state.productionComprehension} currentPath={this.props.match.url} redirect={this.props.match.url+'Questions'} />
             </div>
             : <div className='loading'>Loading...</div>
         )
@@ -43,8 +44,4 @@ class ProductionComprehension extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: state.user
-})
-
-export default connect(mapStateToProps)(ProductionComprehension)
+export default ProductionComprehension
