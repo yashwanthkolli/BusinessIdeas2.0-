@@ -7,9 +7,6 @@ import ScoreCard from '../../Components/ScoreCard/ScoreCard';
 
 
 class RoundOneScore extends Component{
-
-
-
     componentDidMount(){
         const route = {
           path:'/round1/score',
@@ -19,7 +16,7 @@ class RoundOneScore extends Component{
 
 
     render(){
-        if(sessionStorage.usertoken){
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser){
             return (
                 <React.Fragment>
                     <ScoreCard

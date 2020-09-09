@@ -3,6 +3,7 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './FinanceComprehension.Styles.css'
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
 class FinanceComprehension extends Component {
     constructor(){
@@ -26,7 +27,7 @@ class FinanceComprehension extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken)
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser)
         {
         return (
             this.state.financeComprehension ? 
@@ -39,4 +40,9 @@ class FinanceComprehension extends Component {
         else{window.location='/';}
     }
 }
-export default FinanceComprehension;
+
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(FinanceComprehension);

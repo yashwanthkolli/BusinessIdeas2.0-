@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
+import { connect } from 'react-redux';
 
 class RnDQuestions extends Component {
     constructor(){
@@ -21,11 +22,11 @@ class RnDQuestions extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken)
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser)
         {
         return (
             this.state.rndQuestions ?
-            <div>
+            <div className='questions-page-container'>
                 <Questions
                     redirect={'/comprehension/'+this.props.match.params.companyName+'/Sales'}
                     questions={this.state.rndQuestions}
@@ -43,4 +44,8 @@ class RnDQuestions extends Component {
     }
 }
 
-export default RnDQuestions;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(RnDQuestions);

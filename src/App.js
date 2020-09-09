@@ -33,6 +33,7 @@ import RoundThreeScore from './Pages/Round3Score/RoundThreeScore';
 import Round2Rules from './Pages/Round2Rules.js/Round2Rules';
 import StockMarket from './Pages/Round2/Round2';
 import ScoreSheet from './Pages/ScoreSheet/ScoreSheet';
+import NavBar from './Components/NavBar/NavBar';
 
 Modal.setAppElement('#root')
 
@@ -53,11 +54,7 @@ class App extends Component{
   render(){
   return (
     <div className="App">
-    <div className='timer'>
-      {window.location.pathname.substr(1,5) === 'intro' ? <Timer time={3600} currentPath='round1' /> : null}
-      {window.location.pathname.substr(1,6) === 'round2' ? <Timer time={2700} currentPath='round2' /> : null}
-      {window.location.pathname.substr(1,6) === 'round3' ? <Timer time={3600} currentPath='round3' /> : null}
-    </div>
+    <NavBar />
     
     <Provider store={store}>
     <Switch>

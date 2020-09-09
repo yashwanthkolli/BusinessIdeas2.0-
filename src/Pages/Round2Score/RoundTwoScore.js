@@ -5,7 +5,7 @@ import ScoreCard from '../../Components/ScoreCard/ScoreCard';
 
 class RoundTwoScore extends Component{
     render(){
-        if(sessionStorage.usertoken){
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser){
             return (
                 <React.Fragment>
                     <ScoreCard

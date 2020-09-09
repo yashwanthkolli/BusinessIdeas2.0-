@@ -32,6 +32,11 @@ class StockMarket extends Component {
         .then(res => this.setState({companies: res.data}))
 
         this.setState({capital: this.props.currentUser.currentUser.score1})
+
+        const route = {
+            path: this.props.match.url,
+        }
+        Axios.post('http://localhost:5000/user/path/'+ this.props.currentUser.currentUser._id,route)
     }
 
     onclick = (e) => {
@@ -66,7 +71,12 @@ class StockMarket extends Component {
                         existingCompany.investedAmount = existingCompany.investedAmount + investedAmount
                         existingCompany.returns = (selectedCompany.profitpercent+100)*existingCompany.investedAmount/100
                     }else{
-                        investedCompanies.push({name: selectedCompany.name, investedAmount: investedAmount, returns: (selectedCompany.profitpercent+100)*investedAmount/100, data: selectedCompany.data})
+                        investedCompanies.push({
+                            name: selectedCompany.name,
+                            investedAmount: investedAmount,
+                            returns: (selectedCompany.profitpercent+100)*investedAmount/100,
+                            data: selectedCompany.data
+                        })
                     }
                     this.props.updateInvestmentScore(this.score())
                     this.props.updateInvestedCompanies(investedCompanies)
@@ -88,7 +98,7 @@ class StockMarket extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken){
+        if(sessionStorage.usertoken && this.props.currentUser){
             return (
                 this.state.companies ?
                 <div className='round2-page'>

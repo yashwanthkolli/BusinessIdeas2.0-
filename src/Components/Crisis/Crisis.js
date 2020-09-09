@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { updateScoreCrisis } from '../../Redux/User/UserActions';
 
-const Crisis = ({heading, crisis, question, options, redirect, currentUser, updateScoreCrisis}) => {
+const Crisis = ({heading, crisis, question, options, redirect, currentUser, updateScoreCrisis, currentPath}) => {
 
     const response=[]
     let score=0
@@ -17,17 +17,20 @@ const Crisis = ({heading, crisis, question, options, redirect, currentUser, upda
         response.push(data)
     }
     useEffect(()=>{
-
         Axios.get('http://localhost:5000/user/'+currentUser.currentUser._id)
         .then(response => {
-          if (response.status === 200) {
-            
+          if (response.status === 200) {          
                 score=response.data.score3;
           }
         })
         .catch((error) => {
           console.log(error);
         })
+
+        const route = {
+            path: currentPath,
+        }
+        Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
     })
     const onsubmit = (e) => {
         e.preventDefault();

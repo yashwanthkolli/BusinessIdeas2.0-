@@ -18,6 +18,10 @@ class Round2Rules extends Component {
         .then(response => {
           if (response.status === 200) {
             this.props.setCurrentUser(response.data)
+            const route = {
+                path: this.props.match.url,
+            }
+            Axios.post('http://localhost:5000/user/path/'+ response.data._id,route)
           }
         })
         .catch((error) => {
@@ -60,7 +64,7 @@ class Round2Rules extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: state.user.currentUser
+    currentUser: state.user
 });
 
 const mapDispatchToProps = dispatch => ({

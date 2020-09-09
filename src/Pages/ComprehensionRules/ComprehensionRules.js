@@ -20,7 +20,7 @@ const ComprehensionRules = ({match, currentUser}) => {
    
 
     
-    if(sessionStorage.usertoken)
+    if(sessionStorage.usertoken && currentUser.currentUser)
     {
     return(
         <div className='comprehension-rules-container'>

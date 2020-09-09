@@ -3,6 +3,7 @@ import { ReactComponent as Logo } from '../../Assets/business.svg';
 import axios from 'axios';
 
 import './Homepage.Styles.css';
+import { Link } from 'react-router-dom';
 
 export default class HomePage extends Component {
     constructor(){
@@ -15,8 +16,8 @@ export default class HomePage extends Component {
             index:'',
             token:'null',
             other:0,
-            path:''
-            
+            path:'',
+            redirect: '/'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleEmail = this.handleEmail.bind(this);
@@ -62,6 +63,7 @@ export default class HomePage extends Component {
                         })
                         sessionStorage.setItem('usertoken', this.state.token);
                         window.location='/intro/'+this.state.index;
+                        //this.setState({redirect: '/intro/'+this.state.index})
                     }
                 }
                 
@@ -110,7 +112,7 @@ export default class HomePage extends Component {
                                 <input name='password' placeholder='******' type='password' onChange={this.handlePass} required />
                             </div>
                             <div className='button'>
-                                <button type='submit' onClick={this.handleSubmit}>LOGIN</button>
+                                <Link to={this.state.redirect}><button type='submit' onClick={this.handleSubmit}>LOGIN</button></Link>
                             </div>
                         </form>
 

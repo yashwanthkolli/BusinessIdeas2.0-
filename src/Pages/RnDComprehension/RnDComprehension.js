@@ -3,6 +3,7 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './RnDComprehension.Styles.css'
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
 
 class RnDComprehension extends Component {
@@ -27,7 +28,7 @@ class RnDComprehension extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken)
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser)
         {
         return (
             this.state.rndComprehension ? 
@@ -41,4 +42,8 @@ class RnDComprehension extends Component {
     }
 }
 
-export default RnDComprehension;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(RnDComprehension);

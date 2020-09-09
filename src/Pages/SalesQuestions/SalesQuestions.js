@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Questions from '../../Components/Questions/Questions';
+import { connect } from 'react-redux';
 
 class SalesQuestions extends Component {
     constructor(){
@@ -21,11 +22,11 @@ class SalesQuestions extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken)
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser)
         {
             return (
                 this.state.salesQuestions ?
-                <div>
+                <div className='questions-page-container'>
                     <Questions
                         redirect={'/round1/score'}
                         questions={this.state.salesQuestions}
@@ -40,4 +41,8 @@ class SalesQuestions extends Component {
     }
 }
 
-export default SalesQuestions;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(SalesQuestions);

@@ -4,6 +4,7 @@ import Questions from '../../Components/Questions/Questions';
 import { toast, ToastContainer } from 'react-toastify';
 
 import './ProductionQuestion.Styles.css';
+import { connect } from 'react-redux';
 
 class ProductionQuestions extends Component {
     constructor(){
@@ -25,11 +26,11 @@ class ProductionQuestions extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken)
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser)
         {
         return (
             this.state.productionQuestions ?
-            <div>
+            <div className='questions-page-container'>
                 <ToastContainer className='alert' />
                 <Questions
                     redirect={'/comprehension/'+this.props.match.params.companyName+'/Finance'}
@@ -45,4 +46,8 @@ class ProductionQuestions extends Component {
     }
 }
 
-export default ProductionQuestions;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(ProductionQuestions);

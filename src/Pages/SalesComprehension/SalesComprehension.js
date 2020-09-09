@@ -3,6 +3,7 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 
 import './SalesComprehension.Styles.css'
 import Axios from 'axios';
+import { connect } from 'react-redux';
 
 
 class SalesComprehension extends Component {
@@ -27,7 +28,7 @@ class SalesComprehension extends Component {
     }
 
     render() {
-        if(sessionStorage.usertoken)
+        if(sessionStorage.usertoken && this.props.currentUser.currentUser)
         {
             return (
                 this.state.salesComprehension ? 
@@ -41,4 +42,8 @@ class SalesComprehension extends Component {
     }
 }
 
-export default SalesComprehension;
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+export default connect(mapStateToProps)(SalesComprehension);
