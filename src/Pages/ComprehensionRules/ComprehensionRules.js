@@ -13,7 +13,7 @@ const ComprehensionRules = ({match, currentUser}) => {
 
     useEffect(()=>{
         const route = {
-            path:'/comprehension/'+allotedCompanyName+'/Production',
+            path:'/comprehensionRules/'+allotedCompanyName,
           }
           Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
     })

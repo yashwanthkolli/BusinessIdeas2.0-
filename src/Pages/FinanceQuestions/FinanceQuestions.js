@@ -27,7 +27,12 @@ class FinanceQuestions extends Component {
             
             this.state.financeQuestions ?
             <div>
-                <Questions redirect={'/comprehension/'+this.props.match.params.companyName+'/Resdev'} questions={this.state.financeQuestions} questionsName='Finance Questions' />
+                <Questions
+                    redirect={'/comprehension/'+this.props.match.params.companyName+'/Resdev'}
+                    questions={this.state.financeQuestions}
+                    questionsName='Finance Questions'
+                    currentPath={this.props.match.url}    
+                />
             </div>
             : <div className='loading'>Loading...</div>
         )

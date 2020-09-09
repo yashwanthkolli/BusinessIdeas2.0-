@@ -31,7 +31,7 @@ class StockMarket extends Component {
         })
         .then(res => this.setState({companies: res.data}))
 
-        this.setState({capital: this.props.currentUser.currentUser.score})
+        this.setState({capital: this.props.currentUser.currentUser.score1})
     }
 
     onclick = (e) => {

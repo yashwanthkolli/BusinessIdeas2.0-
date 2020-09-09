@@ -11,7 +11,7 @@ import Axios from 'axios';
  const Comprehension = ({currentPath, comprehensionName, redirect, comprehension, currentUser}) => {
     useEffect(()=>{
         const route = {
-            path: currentPath+'Questions',
+            path: currentPath,
           }
           Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
     })

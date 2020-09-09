@@ -26,7 +26,12 @@ class RnDQuestions extends Component {
         return (
             this.state.rndQuestions ?
             <div>
-                <Questions redirect={'/comprehension/'+this.props.match.params.companyName+'/Sales'} questions={this.state.rndQuestions} questionsName='R&D Questions' />
+                <Questions
+                    redirect={'/comprehension/'+this.props.match.params.companyName+'/Sales'}
+                    questions={this.state.rndQuestions}
+                    questionsName='R&D Questions'
+                    currentPath={this.props.match.url}
+                />
             </div>
             : <div className='loading'>Loading...</div>
         )

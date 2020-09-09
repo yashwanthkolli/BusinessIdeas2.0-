@@ -31,7 +31,12 @@ class ProductionQuestions extends Component {
             this.state.productionQuestions ?
             <div>
                 <ToastContainer className='alert' />
-                <Questions redirect={'/comprehension/'+this.props.match.params.companyName+'/Finance'} questions={this.state.productionQuestions} questionsName='Production Questions' />
+                <Questions
+                    redirect={'/comprehension/'+this.props.match.params.companyName+'/Finance'}
+                    questions={this.state.productionQuestions}
+                    questionsName='Production Questions'
+                    currentPath={this.props.match.url}
+                />
             </div>
             : <div className='loading'>Loading...</div>
         )

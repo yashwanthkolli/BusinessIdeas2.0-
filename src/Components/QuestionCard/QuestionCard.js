@@ -28,10 +28,8 @@ const QuestionCard = ({questionDetails, index, currentUser, updateScore}) => {
             if(result[result.length-1] === true) {
                 updateScore(currentUser.score)
                 
-                const points = {
-                    
-                    score1: currentUser.score1 + 1000,
-                    
+                const points = {   
+                    score1: currentUser.score + 1000,
                 }
                 var id = currentUser.currentUser._id;
                 Axios.post('http://localhost:5000/user/score1/'+id, points)

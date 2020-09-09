@@ -8,10 +8,10 @@ import ComprehensionQuestions from '../ComprehensionQuestions/ComprehensionQuest
 import { connect } from 'react-redux';
 import Axios from 'axios';
 
-const Questions = ({redirect, questions, questionsName, currentUser}) => {
+const Questions = ({redirect, questions, questionsName, currentUser, currentPath}) => {
     useEffect(()=>{
         const route = {
-            path: redirect,
+            path: currentPath,
           }
           Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
     })

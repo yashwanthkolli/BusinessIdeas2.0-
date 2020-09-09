@@ -26,7 +26,12 @@ class SalesQuestions extends Component {
             return (
                 this.state.salesQuestions ?
                 <div>
-                    <Questions redirect={'/round1/score'} questions={this.state.salesQuestions} questionsName='Sales Questions' />
+                    <Questions
+                        redirect={'/round1/score'}
+                        questions={this.state.salesQuestions}
+                        questionsName='Sales Questions'
+                        currentPath={this.props.match.url}
+                    />
                 </div>
                 : <div className='loading'>Loading...</div>
             )
