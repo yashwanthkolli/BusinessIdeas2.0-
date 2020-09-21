@@ -31,6 +31,7 @@ const Crisis = ({ heading, crisis, question, options, redirect, currentUser, upd
             path: currentPath,
         }
         Axios.post('http://localhost:5000/user/path/' + currentUser.currentUser._id, route)
+        window.history.pushState(null, null, '/')
     })
     const onsubmit = (e) => {
         e.preventDefault();

@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Questions.Styles.css';
@@ -8,15 +8,16 @@ import ComprehensionQuestions from '../ComprehensionQuestions/ComprehensionQuest
 import { connect } from 'react-redux';
 import Axios from 'axios';
 
-const Questions = ({redirect, questions, questionsName, currentUser, currentPath}) => {
-    useEffect(()=>{
+const Questions = ({ redirect, questions, questionsName, currentUser, currentPath }) => {
+    useEffect(() => {
         const route = {
             path: currentPath,
-          }
-          Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
+        }
+        Axios.post('http://localhost:5000/user/path/' + currentUser.currentUser._id, route)
+        window.history.pushState(null, null, '/')
     })
 
-    return(
+    return (
         <div className='questions-page'>
             <Header heading={questionsName} />
             <ComprehensionQuestions questions={questions} />

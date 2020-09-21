@@ -14,6 +14,11 @@ const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension
             path: currentPath,
         }
         Axios.post('http://localhost:5000/user/path/' + currentUser.currentUser._id, route)
+        const question = {
+            flag: 0 //Unanswered
+        }
+        Axios.post('http://localhost:5000/user/reset/' + currentUser.currentUser._id, question)
+        window.history.pushState(null, null, '/')
     })
 
     return (

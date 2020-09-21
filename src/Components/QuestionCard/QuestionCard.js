@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './QuestionCard.Styles.css';
 import { updateScore } from '../../Redux/User/UserActions';
 import Axios from 'axios';
 
-const QuestionCard = ({ questionDetails, index, currentUser, updateScore }) => {
+const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questions }) => {
+    useEffect(() => {
+        if (eval('currentUser.currentUser.q' + (index + 1)) === 1) {
+            var div = document.getElementById(questions[index]._id)
+            div.classList.remove('hover')
+            var form = document.getElementById(questions[index]._id + 'form')
+            var elements = form.elements
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].disabled = true
+            }
+        }
+    })
     const { _id, question, answer } = questionDetails;
 
     const options = [questionDetails.option1, questionDetails.option2, questionDetails.option3, questionDetails.option4]
@@ -25,6 +36,10 @@ const QuestionCard = ({ questionDetails, index, currentUser, updateScore }) => {
         const respons = response[response.length - 1];
         if (respons) {
             respons.value === answer ? result.push(true) : result.push(false)
+            const question = {
+                flag: 1  //answered
+            }
+            Axios.post('http://localhost:5000/user/question/' + parseInt(index + 1) + '/' + currentUser.currentUser._id, question)
             if (result[result.length - 1] === true) {
                 updateScore(currentUser.score)
 
