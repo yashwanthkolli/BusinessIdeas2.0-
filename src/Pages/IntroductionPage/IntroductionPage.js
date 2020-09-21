@@ -67,7 +67,6 @@ class IntroductionPage extends Component {
 
   render() {
     if (sessionStorage.usertoken) {
-      console.log(this.state.page)
       return (
         this.state.CompanyName ?
           <div className='introduction-page'>
@@ -81,7 +80,7 @@ class IntroductionPage extends Component {
                     this.state.page
                     : '/comprehensionRules/' + this.state.CompanyName
                 }>
-                  <button>Comprehensions &#8594;</button>
+                  <button>Go &#8594;</button>
                 </Link>
               </div>
             </div>

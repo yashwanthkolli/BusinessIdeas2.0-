@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import './Comprehension.Styles.css';
@@ -8,21 +8,21 @@ import Body from '../Body/Body';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 
- const Comprehension = ({currentPath, comprehensionName, redirect, comprehension, currentUser}) => {
-    useEffect(()=>{
+const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension, currentUser }) => {
+    useEffect(() => {
         const route = {
             path: currentPath,
-          }
-          Axios.post('http://localhost:5000/user/path/'+ currentUser.currentUser._id,route)
+        }
+        Axios.post('http://localhost:5000/user/path/' + currentUser.currentUser._id, route)
     })
 
     return (
         <div className='comprehension-page'>
             <div className='comprehension-image' >
-                <img src={require('../../Assets/'+comprehensionName+'.svg')} alt='ComprehensionImage'/>
+                <img src={require('../../Assets/' + comprehensionName + '.svg')} alt='ComprehensionImage' />
             </div>
             <div className='comprehension'>
-                <Header heading={comprehensionName+' Comprehension'} />
+                <Header heading={comprehensionName + ' Comprehension'} />
                 <Body body={comprehension} />
                 <div className='button'>
                     <Link to={redirect}><button>Questions</button></Link>

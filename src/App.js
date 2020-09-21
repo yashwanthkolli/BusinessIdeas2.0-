@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{ Switch, Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Modal from 'react-modal';
 //import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -16,7 +16,6 @@ import RnDComprehension from './Pages/RnDComprehension/RnDComprehension';
 import RnDQuestions from './Pages/RnDQuestions/RnDQuestions';
 import SalesComprehension from './Pages/SalesComprehension/SalesComprehension';
 import SalesQuestions from './Pages/SalesQuestions/SalesQuestions';
-import Timer from './Components/Timer/Timer';
 import RoundOneScore from './Pages/Round1Score/RoundOneScore';
 import { Provider } from 'react-redux';
 import store from './Redux/Store';
@@ -37,56 +36,57 @@ import NavBar from './Components/NavBar/NavBar';
 
 Modal.setAppElement('#root')
 
-class App extends Component{ 
-  constructor(){
+class App extends Component {
+  constructor() {
     super();
     this.state = {
-        flag: false,
+      flag: false,
 
     }
-    this.userUpdate=this.userUpdate.bind(this);
+    this.userUpdate = this.userUpdate.bind(this);
+    window.history.pushState(null, null, '/')
   }
 
-  userUpdate (userObject) {
+  userUpdate(userObject) {
     this.setState(userObject)
   }
 
-  render(){
-  return (
-    <div className="App">
-    <NavBar />
-    
-    <Provider store={store}>
-    <Switch>
-      <Route exact path='/' component={HomePage} />
-      <Route exact path='/intro/:id' component={IntroductionPage} />
-      <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
-      <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
-      <Route exact path='/comprehension/:companyName/ProductionQuestions' component={ProductionQuestions} />
-      <Route exact path='/comprehension/:companyName/Finance' component={FinanceComprehension} />
-      <Route exact path='/comprehension/:companyName/FinanceQuestions' component={FinanceQuestions} />
-      <Route exact path='/comprehension/:companyName/Resdev' component={RnDComprehension} />
-      <Route exact path='/comprehension/:companyName/ResdevQuestions' component={RnDQuestions} />
-      <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
-      <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
-      <Route exact path='/round1/score' component={RoundOneScore} />
-      <Route exact path='/round2/rules/:id' component={Round2Rules} />
-      <Route exact path='/stockmarket' component={StockMarket} />
-      <Route exact path='/crisis/production/1' component={ProductionCrisis1} />
-      <Route exact path='/crisis/production/2' component={ProductionCrisis2} />
-      <Route exact path='/crisis/finance/1' component={FinanceCrisis1} />
-      <Route exact path='/crisis/finance/2' component={FinanceCrisis2} />
-      <Route exact path='/crisis/rnd/1' component={RndCrisis1} />
-      <Route exact path='/crisis/rnd/2' component={RndCrisis2} />
-      <Route exact path='/crisis/sales/1' component={SalesCrisis1} />
-      <Route exact path='/crisis/sales/2' component={SalesCrisis2} />
-      <Route exact path='/round3/rules/:id' component={Round3Rules} />
-      <Route exact path='/round3/score' component={RoundThreeScore} />
-      <Route exact path='/scoresheet/:id' component={ScoreSheet} />
-    </Switch>
-    </Provider>
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <NavBar />
+
+        <Provider store={store}>
+          <Switch>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/intro/:id' component={IntroductionPage} />
+            <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
+            <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
+            <Route exact path='/comprehension/:companyName/ProductionQuestions' component={ProductionQuestions} />
+            <Route exact path='/comprehension/:companyName/Finance' component={FinanceComprehension} />
+            <Route exact path='/comprehension/:companyName/FinanceQuestions' component={FinanceQuestions} />
+            <Route exact path='/comprehension/:companyName/Resdev' component={RnDComprehension} />
+            <Route exact path='/comprehension/:companyName/ResdevQuestions' component={RnDQuestions} />
+            <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
+            <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
+            <Route exact path='/round1/score' component={RoundOneScore} />
+            <Route exact path='/round2/rules/:id' component={Round2Rules} />
+            <Route exact path='/stockmarket' component={StockMarket} />
+            <Route exact path='/crisis/production/1' component={ProductionCrisis1} />
+            <Route exact path='/crisis/production/2' component={ProductionCrisis2} />
+            <Route exact path='/crisis/finance/1' component={FinanceCrisis1} />
+            <Route exact path='/crisis/finance/2' component={FinanceCrisis2} />
+            <Route exact path='/crisis/rnd/1' component={RndCrisis1} />
+            <Route exact path='/crisis/rnd/2' component={RndCrisis2} />
+            <Route exact path='/crisis/sales/1' component={SalesCrisis1} />
+            <Route exact path='/crisis/sales/2' component={SalesCrisis2} />
+            <Route exact path='/round3/rules/:id' component={Round3Rules} />
+            <Route exact path='/round3/score' component={RoundThreeScore} />
+            <Route exact path='/scoresheet/:id' component={ScoreSheet} />
+          </Switch>
+        </Provider>
+      </div>
+    );
   }
 }
 

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import CompanyCard from '../../Components/CompanyCard/CompanyCard'
 import Modal from 'react-modal';
 
@@ -80,6 +79,19 @@ class StockMarket extends Component {
                     }
                     this.props.updateInvestmentScore(this.score())
                     this.props.updateInvestedCompanies(investedCompanies)
+
+                    const points = {
+                        companyName1: investedCompanies[0] ? investedCompanies[0].name : "",
+                        companyName2: investedCompanies[1] ? investedCompanies[1].name : "",
+                        invest1: investedCompanies[0] ? investedCompanies[0].investedAmount : 0,
+                        invest2: investedCompanies[1] ? investedCompanies[1].investedAmount : 0
+                    }
+                    console.log(points)
+                    var id = this.props.currentUser.currentUser._id;
+                    Axios.post('http://localhost:5000/user/company1/' + id, points)
+                    Axios.post('http://localhost:5000/user/company2/' + id, points)
+                    Axios.post('http://localhost:5000/user/invest1/' + id, points)
+                    Axios.post('http://localhost:5000/user/invest2/' + id, points)
                 } else {
                     alert('Cannot invest in more than 2 stocks')
                 }
@@ -120,7 +132,7 @@ class StockMarket extends Component {
                                     }
                                 </div>
                             </div>
-                            <Link to={'/round3/rules/' + this.props.currentUser.currentUser._id}><button>Round 3</button></Link>
+                            <button onClick={() => window.location = '/round3/rules/' + this.props.currentUser.currentUser._id}>Round 3</button>
                             <Modal isOpen={this.state.isPopUpOpen} onRequestClose={() => this.setState({ isPopUpOpen: false })}>
                                 {
                                     this.state.selectedCompany ?
@@ -179,3 +191,11 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockMarket);
+
+// const points = {
+
+//     score3: score,
+
+// }
+// var id = currentUser.currentUser._id;
+// Axios.post('http://localhost:5000/user/score3/' + id, points)

@@ -3,20 +3,19 @@ import { ReactComponent as Logo } from '../../Assets/business.svg';
 import axios from 'axios';
 
 import './Homepage.Styles.css';
-import { Link } from 'react-router-dom';
 
 export default class HomePage extends Component {
-    constructor(){
+    constructor() {
         super();
-        this.state={
+        this.state = {
             email: '',
             password: '',
             redirectTo: false,
-            company:'',
-            index:'',
-            token:'null',
-            other:0,
-            path:'',
+            company: '',
+            index: '',
+            token: 'null',
+            other: 0,
+            path: '',
             redirect: '/'
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,70 +28,61 @@ export default class HomePage extends Component {
         const user = {
             email: this.state.email,
             password: this.state.password
-            
-          }
-      
-          
-      
-          axios.post('http://localhost:5000/user/login', user)
-            .then(res =>{
-                
-                if(res.status===200)
-                {
+        }
+        axios.post('http://localhost:5000/user/login', user)
+            .then(res => {
+                if (res.status === 200) {
                     console.log(res.data)
-                    if(res.data.value)
-                    {
+                    if (res.data.value) {
                         console.log("Team Member Login");
                         this.setState({
                             other: res.data.value,
-                            company:res.data.company,
-                            index:res.data._id,
-                            token:res.data.token,
-                            path:res.data.page,
+                            company: res.data.company,
+                            index: res.data._id,
+                            token: res.data.token,
+                            path: res.data.page,
                         })
 
                     }
-                    else
-                    {
+                    else {
                         this.setState({
-                            redirectTo:true,
-                            company:res.data.company,
-                            index:res.data._id,
-                            token:res.data.token,
-                            path:res.data.page
+                            redirectTo: true,
+                            company: res.data.company,
+                            index: res.data._id,
+                            token: res.data.token,
+                            path: res.data.page
                         })
                         sessionStorage.setItem('usertoken', this.state.token);
-                        window.location='/intro/'+this.state.index;
+                        window.location = '/intro/' + this.state.index;
                         //this.setState({redirect: '/intro/'+this.state.index})
                     }
                 }
-                
-            } )
+
+            })
             .catch(error => {
-                window.location ='/';
+                window.location = '/';
                 window.alert('invalid credentials')
                 console.log(error)
-                })
+            })
     }
 
     handleEmail(e) {
         e.preventDefault();
         this.setState({
-            email:e.target.value
+            email: e.target.value
         })
     }
 
 
-    handlePass(e)
-    {
+    handlePass(e) {
         e.preventDefault();
         this.setState({
-            password:e.target.value
+            password: e.target.value
         })
     }
 
     render() {
-        
+
         return (
             <div className='container'>
                 <div className='logo-container'>
@@ -105,18 +95,18 @@ export default class HomePage extends Component {
                         <form className='input' onSubmit={this.handleSubmit}>
                             <div className='input-box'>
                                 <label>Email</label>
-                                <input name='email' placeholder='John@gmail.com' type='email'  onChange={this.handleEmail} required />
+                                <input name='email' placeholder='John@gmail.com' type='email' onChange={this.handleEmail} required />
                             </div>
                             <div className='input-box'>
                                 <label>Password</label>
                                 <input name='password' placeholder='******' type='password' onChange={this.handlePass} required />
                             </div>
                             <div className='button'>
-                                <Link to={this.state.redirect}><button type='submit' onClick={this.handleSubmit}>LOGIN</button></Link>
+                                <button type='submit' onClick={this.handleSubmit}>LOGIN</button>
                             </div>
                         </form>
 
-                    </div>    
+                    </div>
                 </div>
             </div>
         )
