@@ -53,7 +53,7 @@ export default class HomePage extends Component {
                             path: res.data.page
                         })
                         sessionStorage.setItem('usertoken', this.state.token);
-                        window.location = '/intro/' + this.state.index;
+                        window.location = '/redirect/' + this.state.index;
                         //this.setState({redirect: '/intro/'+this.state.index})
                     }
                 }

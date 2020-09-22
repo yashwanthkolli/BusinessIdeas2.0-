@@ -8,6 +8,8 @@ import Body from '../Body/Body';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 
+import { setCurrentUser } from '../../Redux/User/UserActions';
+
 const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension, currentUser }) => {
     useEffect(() => {
         const route = {
@@ -20,6 +22,19 @@ const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension
         Axios.post('http://localhost:5000/user/reset/' + currentUser.currentUser._id, question)
         window.history.pushState(null, null, '/')
     })
+
+    useEffect(() => {
+        Axios.get('http://localhost:5000/user/' + currentUser.currentUser._id)
+            .then(response => {
+                if (response.status === 200) {
+                    setCurrentUser(response.data)
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+    }, [])
 
     return (
         <div className='comprehension-page'>
@@ -41,4 +56,8 @@ const mapStateToProps = (state) => ({
     currentUser: state.user
 })
 
-export default connect(mapStateToProps)(Comprehension);
+const mapDispatchToProps = dispatch => ({
+    setCurrentUser: user => dispatch(setCurrentUser(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comprehension);

@@ -42,7 +42,7 @@ const Crisis = ({ heading, crisis, question, options, redirect, currentUser, upd
             score = score + parseInt(respons.value)
             const points = {
 
-                score3: score,
+                score3: currentUser.score + currentUser.currentUser.score3 + parseInt(respons.value),
 
             }
             var id = currentUser.currentUser._id;

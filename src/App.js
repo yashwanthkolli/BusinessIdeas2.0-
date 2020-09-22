@@ -33,6 +33,7 @@ import Round2Rules from './Pages/Round2Rules.js/Round2Rules';
 import StockMarket from './Pages/Round2/Round2';
 import ScoreSheet from './Pages/ScoreSheet/ScoreSheet';
 import NavBar from './Components/NavBar/NavBar';
+import PseudoRedirect from './Pages/PseudoRedirectPage/PseudoRedirect';
 
 Modal.setAppElement('#root')
 
@@ -54,37 +55,43 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <NavBar />
+        <div className='bigger-display'>
+          <NavBar />
 
-        <Provider store={store}>
-          <Switch>
-            <Route exact path='/' component={HomePage} />
-            <Route exact path='/intro/:id' component={IntroductionPage} />
-            <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
-            <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
-            <Route exact path='/comprehension/:companyName/ProductionQuestions' component={ProductionQuestions} />
-            <Route exact path='/comprehension/:companyName/Finance' component={FinanceComprehension} />
-            <Route exact path='/comprehension/:companyName/FinanceQuestions' component={FinanceQuestions} />
-            <Route exact path='/comprehension/:companyName/Resdev' component={RnDComprehension} />
-            <Route exact path='/comprehension/:companyName/ResdevQuestions' component={RnDQuestions} />
-            <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
-            <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
-            <Route exact path='/round1/score' component={RoundOneScore} />
-            <Route exact path='/round2/rules/:id' component={Round2Rules} />
-            <Route exact path='/stockmarket' component={StockMarket} />
-            <Route exact path='/crisis/production/1' component={ProductionCrisis1} />
-            <Route exact path='/crisis/production/2' component={ProductionCrisis2} />
-            <Route exact path='/crisis/finance/1' component={FinanceCrisis1} />
-            <Route exact path='/crisis/finance/2' component={FinanceCrisis2} />
-            <Route exact path='/crisis/rnd/1' component={RndCrisis1} />
-            <Route exact path='/crisis/rnd/2' component={RndCrisis2} />
-            <Route exact path='/crisis/sales/1' component={SalesCrisis1} />
-            <Route exact path='/crisis/sales/2' component={SalesCrisis2} />
-            <Route exact path='/round3/rules/:id' component={Round3Rules} />
-            <Route exact path='/round3/score' component={RoundThreeScore} />
-            <Route exact path='/scoresheet/:id' component={ScoreSheet} />
-          </Switch>
-        </Provider>
+          <Provider store={store}>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/redirect/:id' component={PseudoRedirect} />
+              <Route exact path='/intro/:id' component={IntroductionPage} />
+              <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
+              <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
+              <Route exact path='/comprehension/:companyName/ProductionQuestions' component={ProductionQuestions} />
+              <Route exact path='/comprehension/:companyName/Finance' component={FinanceComprehension} />
+              <Route exact path='/comprehension/:companyName/FinanceQuestions' component={FinanceQuestions} />
+              <Route exact path='/comprehension/:companyName/Resdev' component={RnDComprehension} />
+              <Route exact path='/comprehension/:companyName/ResdevQuestions' component={RnDQuestions} />
+              <Route exact path='/comprehension/:companyName/Sales' component={SalesComprehension} />
+              <Route exact path='/comprehension/:companyName/SalesQuestions' component={SalesQuestions} />
+              <Route exact path='/round1/score' component={RoundOneScore} />
+              <Route exact path='/round2/rules/:id' component={Round2Rules} />
+              <Route exact path='/stockmarket' component={StockMarket} />
+              <Route exact path='/crisis/production/1' component={ProductionCrisis1} />
+              <Route exact path='/crisis/production/2' component={ProductionCrisis2} />
+              <Route exact path='/crisis/finance/1' component={FinanceCrisis1} />
+              <Route exact path='/crisis/finance/2' component={FinanceCrisis2} />
+              <Route exact path='/crisis/rnd/1' component={RndCrisis1} />
+              <Route exact path='/crisis/rnd/2' component={RndCrisis2} />
+              <Route exact path='/crisis/sales/1' component={SalesCrisis1} />
+              <Route exact path='/crisis/sales/2' component={SalesCrisis2} />
+              <Route exact path='/round3/rules/:id' component={Round3Rules} />
+              <Route exact path='/round3/score' component={RoundThreeScore} />
+              <Route exact path='/scoresheet/:id' component={ScoreSheet} />
+            </Switch>
+          </Provider>
+        </div>
+        <div className='smaller-display'>
+          <h1>Use a bigger display</h1>
+        </div>
       </div>
     );
   }

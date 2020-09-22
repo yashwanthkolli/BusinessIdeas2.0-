@@ -19,7 +19,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = (state) => ({
-  setCurrentUser: state.user.currentUser
+  currentUser: state.user.currentUser
 })
 
 

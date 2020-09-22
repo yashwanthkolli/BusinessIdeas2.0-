@@ -7,6 +7,9 @@ import Axios from 'axios';
 import Graph from '../../Components/Graph/Graph';
 import { connect } from 'react-redux';
 import { updateInvestedCompanies, updateInvestmentScore } from '../../Redux/User/UserActions';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class StockMarket extends Component {
     constructor() {
@@ -51,7 +54,7 @@ class StockMarket extends Component {
         if (e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price <= this.state.capital) {
             this.setState({ investedAmount: e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price })
         } else {
-            alert('Investment Cannot be greater than Capital')
+            toast.error("Investment canNOT be greater than capital", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
             e.target.value = 0
         }
     }
@@ -93,13 +96,13 @@ class StockMarket extends Component {
                     Axios.post('http://localhost:5000/user/invest1/' + id, points)
                     Axios.post('http://localhost:5000/user/invest2/' + id, points)
                 } else {
-                    alert('Cannot invest in more than 2 stocks')
+                    toast.error("Cannot invest in more than 2 stocks", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
                 }
             } else {
-                alert('Minimum no of shares are not purchased')
+                toast.error("Minimum no of shares are not purchased", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
             }
         } else {
-            alert('Enter Valid Amount')
+            toast.error("Enter Valid Amount", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
         }
     }
 
@@ -191,11 +194,3 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(StockMarket);
-
-// const points = {
-
-//     score3: score,
-
-// }
-// var id = currentUser.currentUser._id;
-// Axios.post('http://localhost:5000/user/score3/' + id, points)

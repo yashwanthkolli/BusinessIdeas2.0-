@@ -7,11 +7,29 @@ import ScoreCard from '../../Components/ScoreCard/ScoreCard';
 
 
 class RoundOneScore extends Component {
+    constructor() {
+        super()
+        this.state = {
+            round1Score: 0
+        }
+    }
     componentDidMount() {
         const route = {
             path: '/round1/score',
         }
         Axios.post('http://localhost:5000/user/path/' + this.props.currentUser.currentUser._id, route)
+
+        Axios.get('http://localhost:5000/user/' + this.props.currentUser.currentUser._id)
+            .then(response => {
+                if (response.status === 200) {
+                    this.setState({
+                        round1Score: response.data.score1
+                    })
+                }
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }
 
 
@@ -21,7 +39,7 @@ class RoundOneScore extends Component {
                 <React.Fragment>
                     <ScoreCard
                         redirect={'/round2/rules/' + this.props.currentUser.currentUser._id}
-                        score={this.props.currentUser.score}
+                        score={this.state.round1Score}
                         round="Round-1"
                         nextRound="Round-2" />
                 </React.Fragment>

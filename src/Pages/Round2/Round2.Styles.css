@@ -194,3 +194,8 @@
 h1{
     margin: 0;
 }
+
+.round2-toast{
+    padding: 20px;
+    font-size: 20px;
+}
