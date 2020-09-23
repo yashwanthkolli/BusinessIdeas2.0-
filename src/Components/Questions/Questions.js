@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { setCurrentUser } from '../../Redux/User/UserActions';
+import { setCurrentUser, setScore } from '../../Redux/User/UserActions';
 
 import './Questions.Styles.css';
 
@@ -10,7 +10,7 @@ import ComprehensionQuestions from '../ComprehensionQuestions/ComprehensionQuest
 import { connect } from 'react-redux';
 import Axios from 'axios';
 
-const Questions = ({ redirect, questions, questionsName, currentUser, currentPath, setCurrentUser }) => {
+const Questions = ({ redirect, questions, questionsName, currentUser, currentPath, setCurrentUser, setScore }) => {
     useEffect(() => {
         const route = {
             path: currentPath,
@@ -24,12 +24,12 @@ const Questions = ({ redirect, questions, questionsName, currentUser, currentPat
             .then(response => {
                 if (response.status === 200) {
                     setCurrentUser(response.data)
+                    setScore(response.data.score1)
                 }
             })
             .catch((error) => {
                 console.log(error);
             })
-
     }, [])
 
     return (
@@ -48,7 +48,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    setCurrentUser: user => dispatch(setCurrentUser(user))
+    setCurrentUser: user => dispatch(setCurrentUser(user)),
+    setScore: score => dispatch(setScore(score))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Questions);

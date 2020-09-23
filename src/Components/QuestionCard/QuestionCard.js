@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 import './QuestionCard.Styles.css';
-import { updateScore } from '../../Redux/User/UserActions';
+import { setScore, updateScore } from '../../Redux/User/UserActions';
 import Axios from 'axios';
 
-const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questions }) => {
+const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questions, setScore }) => {
     useEffect(() => {
         if (eval('currentUser.currentUser.q' + (index + 1)) === 1) {
             var div = document.getElementById(questions[index]._id)
@@ -42,10 +42,12 @@ const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questi
             Axios.post('http://localhost:5000/user/question/' + parseInt(index + 1) + '/' + currentUser.currentUser._id, question)
             if (result[result.length - 1] === true) {
                 updateScore(currentUser.score)
-
-                const points = {
-                    score1: currentUser.currentUser.score1 + currentUser.score + 1000,
-                }
+                const points = currentUser.score === 0 ?
+                    {
+                        score1: currentUser.currentUser.score1 + 1000
+                    } : {
+                        score1: currentUser.score + 1000
+                    }
                 var id = currentUser.currentUser._id;
                 Axios.post('http://localhost:5000/user/score1/' + id, points)
             }
@@ -81,7 +83,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    updateScore: score => dispatch(updateScore(score))
+    updateScore: score => dispatch(updateScore(score)),
+    setScore: score => dispatch(setScore(score))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionCard);

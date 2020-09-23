@@ -9,7 +9,7 @@ import './IntroductionPage.Styles.css';
 
 import Header from '../../Components/Header/Header';
 import Body from '../../Components/Body/Body';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
 
@@ -44,7 +44,7 @@ class IntroductionPage extends Component {
           })
 
           this.props.setCurrentUser(response.data)
-          toast.success('You are alloted with the company ' + response.data.company.toUpperCase())
+          toast.success('You are alloted with the company ' + response.data.company.toUpperCase(), { className: 'companyAllotmentPopUp' })
         }
       })
       .catch((error) => {
@@ -70,7 +70,6 @@ class IntroductionPage extends Component {
       return (
         this.state.CompanyName ?
           <div className='introduction-page'>
-            <ToastContainer className='alert' />
             <div className='company-introduction'>
               <Header heading={this.state.CompanyName} />
               <Body body={this.state.info} />

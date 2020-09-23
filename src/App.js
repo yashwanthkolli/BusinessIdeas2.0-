@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Modal from 'react-modal';
-//import "bootstrap/dist/css/bootstrap.min.css";
 
 import './App.css';
 
@@ -90,7 +89,7 @@ class App extends Component {
           </Provider>
         </div>
         <div className='smaller-display'>
-          <h1>Use a bigger display</h1>
+          <h1>Login from a desktop/laptop</h1>
         </div>
       </div>
     );
