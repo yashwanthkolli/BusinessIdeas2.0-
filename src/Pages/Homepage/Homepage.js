@@ -3,6 +3,9 @@ import { ReactComponent as Logo } from '../../Assets/business.svg';
 import axios from 'axios';
 
 import './Homepage.Styles.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 export default class HomePage extends Component {
     constructor() {
@@ -29,41 +32,56 @@ export default class HomePage extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        axios.post('http://localhost:5000/user/login', user)
-            .then(res => {
-                if (res.status === 200) {
-                    console.log(res.data)
-                    if (res.data.value) {
-                        console.log("Team Member Login");
-                        this.setState({
-                            other: res.data.value,
-                            company: res.data.company,
-                            index: res.data._id,
-                            token: res.data.token,
-                            path: res.data.page,
-                        })
 
-                    }
-                    else {
-                        this.setState({
-                            redirectTo: true,
-                            company: res.data.company,
-                            index: res.data._id,
-                            token: res.data.token,
-                            path: res.data.page
+        document.getElementsByName('email')[0].value = ''
+        document.getElementsByName('password')[0].value = ''
+
+        axios.get('http://localhost:5000/admin/control')
+            .then(response => {
+
+                this.setState({ control: response.data[0].round1 });
+                if (response.data[0].round1 === '1') {
+
+                    axios.post('http://localhost:5000/user/login', user)
+                        .then(res => {
+                            if (res.status === 200) {
+                                if (res.data.value) {
+                                    console.log("Team Member Login");
+                                    this.setState({
+                                        other: res.data.value,
+                                        company: res.data.company,
+                                        index: res.data._id,
+                                        token: res.data.token,
+                                        path: res.data.page,
+                                    })
+
+                                }
+                                else {
+                                    this.setState({
+                                        redirectTo: true,
+                                        company: res.data.company,
+                                        index: res.data._id,
+                                        token: res.data.token,
+                                        path: res.data.page
+                                    })
+                                    sessionStorage.setItem('usertoken', this.state.token);
+                                    window.location = '/setRound/' + this.state.index;
+                                }
+                            }
+
                         })
-                        sessionStorage.setItem('usertoken', this.state.token);
-                        window.location = '/redirect/' + this.state.index;
-                        //this.setState({redirect: '/intro/'+this.state.index})
-                    }
+                        .catch(error => {
+                            toast.error("Invalid User Credentials", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
+                            console.log(error)
+                        })
+                }
+                else {
+                    toast.error("Round 1 is yet to start", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
                 }
 
             })
-            .catch(error => {
-                window.location = '/';
-                window.alert('invalid credentials')
-                console.log(error)
-            })
+
+
     }
 
     handleEmail(e) {
@@ -82,7 +100,6 @@ export default class HomePage extends Component {
     }
 
     render() {
-
         return (
             <div className='container'>
                 <div className='logo-container'>
@@ -94,7 +111,7 @@ export default class HomePage extends Component {
 
                         <form className='input' onSubmit={this.handleSubmit}>
                             <div className='input-box'>
-                                <label>Email</label>
+                                <label>Team Id</label>
                                 <input name='email' placeholder='John@gmail.com' type='email' onChange={this.handleEmail} required />
                             </div>
                             <div className='input-box'>

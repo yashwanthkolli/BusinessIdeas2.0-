@@ -35,6 +35,8 @@ class IntroductionPage extends Component {
   }
 
   componentDidMount() {
+    sessionStorage.setItem('round', 'round1')
+    console.log(sessionStorage)
     Axios.get('http://localhost:5000/user/' + this.props.match.params.id)
       .then(response => {
         if (response.status === 200) {

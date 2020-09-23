@@ -33,6 +33,7 @@ import StockMarket from './Pages/Round2/Round2';
 import ScoreSheet from './Pages/ScoreSheet/ScoreSheet';
 import NavBar from './Components/NavBar/NavBar';
 import PseudoRedirect from './Pages/PseudoRedirectPage/PseudoRedirect';
+import PseudoRoundSet from './Pages/PseudoRoundSetPage/PseudoRoundSet';
 
 Modal.setAppElement('#root')
 
@@ -60,6 +61,7 @@ class App extends Component {
           <Provider store={store}>
             <Switch>
               <Route exact path='/' component={HomePage} />
+              <Route exact path='/setRound/:id' component={PseudoRoundSet} />
               <Route exact path='/redirect/:id' component={PseudoRedirect} />
               <Route exact path='/intro/:id' component={IntroductionPage} />
               <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />

@@ -20,7 +20,8 @@ class StockMarket extends Component {
             selectedCompany: null,
             isPopUpOpen: false,
             investedAmount: 0,
-            investedCompanies: []
+            investedCompanies: [],
+            control: 0
         }
     }
 
@@ -39,6 +40,13 @@ class StockMarket extends Component {
             path: this.props.match.url,
         }
         Axios.post('http://localhost:5000/user/path/' + this.props.currentUser.currentUser._id, route)
+
+        Axios.get('http://localhost:5000/admin/control')
+            .then(response => {
+                if (response.data[0].round3 === '1') {
+                    this.setState({ control: 1 });
+                }
+            })
     }
 
     onclick = (e) => {
@@ -112,6 +120,22 @@ class StockMarket extends Component {
         return (parseFloat(returns) + parseFloat(this.state.capital.toFixed(2)) - parseFloat(this.state.investedAmount.toFixed(2)))
     }
 
+    nextRound = () => {
+        if (this.state.control === 1) {
+            sessionStorage.setItem('round', 'round3')
+            window.location = '/round3/rules/' + this.props.currentUser.currentUser._id
+        }
+        else {
+            toast.error("Round 3 is yet to start!", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
+            Axios.get('http://localhost:5000/admin/control')
+                .then(response => {
+                    if (response.data[0].round3 === '1') {
+                        this.setState({ control: 1 });
+                    }
+                })
+        }
+    }
+
     render() {
         if (sessionStorage.usertoken && this.props.currentUser) {
             return (
@@ -135,7 +159,7 @@ class StockMarket extends Component {
                                     }
                                 </div>
                             </div>
-                            <button onClick={() => window.location = '/round3/rules/' + this.props.currentUser.currentUser._id}>Round 3</button>
+                            <button onClick={this.nextRound}>Round 3</button>
                             <Modal isOpen={this.state.isPopUpOpen} onRequestClose={() => this.setState({ isPopUpOpen: false })}>
                                 {
                                     this.state.selectedCompany ?

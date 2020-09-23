@@ -10,10 +10,12 @@ class RoundOneScore extends Component {
     constructor() {
         super()
         this.state = {
-            round1Score: 0
+            round1Score: 0,
+            control: 0
         }
     }
     componentDidMount() {
+        sessionStorage.setItem('round', 'round2')
         const route = {
             path: '/round1/score',
         }
@@ -30,6 +32,14 @@ class RoundOneScore extends Component {
             .catch((error) => {
                 console.log(error);
             })
+
+        Axios.get('http://localhost:5000/admin/control')
+            .then(response => {
+                if (response.data[0].round2 === '1') {
+                    this.setState({ control: 1 });
+                }
+            }
+            )
     }
 
 
@@ -41,7 +51,8 @@ class RoundOneScore extends Component {
                         redirect={'/round2/rules/' + this.props.currentUser.currentUser._id}
                         score={this.state.round1Score}
                         round="Round-1"
-                        nextRound="Round-2" />
+                        nextRound="Round-2"
+                        control={this.state.control} />
                 </React.Fragment>
             )
         }

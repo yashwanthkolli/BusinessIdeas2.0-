@@ -1,40 +1,47 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Countdown from 'react-countdown';
 
 import './Timer.Styles.css'
 import { Redirect } from 'react-router-dom';
 
-const Timer = ({ time, currentPath }) => {
-    if (currentPath === 'round1') {
-        return (
-            <Countdown date={Date.now() + time * 1000}>
-                {
-                    <Redirect to='/round1/score' />
-                }
-            </Countdown>
-        )
-    }
-    if (currentPath === 'round2') {
-        return (
-            <Countdown date={Date.now() + time * 1000}>
-                {
-                    <Redirect to='/round2/score' />
-                }
-            </Countdown>
-        )
-    }
-    if (currentPath === 'round3') {
-        return (
-            <Countdown date={Date.now() + time * 1000}>
-                {
-                    <Redirect to='/round3/score' />
-                }
-            </Countdown>
-        )
-    }
-    else {
-        return (null)
+class Timer extends Component {
+    render() {
+        if (sessionStorage.round === 'round1') {
+            const date = Date.parse(new Date("2020-09-23 20:00:00"))
+            return (
+                <Countdown Countdown date={date} >
+                    {
+                        <Redirect to='/round1/score' />
+                    }
+                </Countdown>
+            )
+        }
+
+        if (sessionStorage.round === 'round2') {
+            const date = Date.parse(new Date("2020-09-23 20:30:00"))
+            return (
+                <Countdown Countdown date={date} >
+                    {
+                        <Redirect to='/crisis/production/1' />
+                    }
+                </Countdown>
+            )
+        }
+
+        if (sessionStorage.round === 'round3') {
+            const date = Date.parse(new Date("2020-09-23 20:40:00"))
+            return (
+                <Countdown Countdown date={date} >
+                    {
+                        <Redirect to='/round3/score' />
+                    }
+                </Countdown>
+            )
+        }
+        else {
+            return (null)
+        }
     }
 }
 

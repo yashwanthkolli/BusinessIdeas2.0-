@@ -1,12 +1,37 @@
-import React from 'react'
+import Axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import './ScoreCard.Styles.css'
 
 
-const ScoreCard = ({redirect, score, round, nextRound}) => {
+const ScoreCard = ({ redirect, score, round, nextRound, control }) => {
+    const [isNextRound, setIsNextRound] = useState(0)
+    useEffect(() => {
+        Axios.get('http://localhost:5000/admin/control')
+            .then(response => {
+                if (round === 'Round-1' && response.data[0].round2 === '1') {
+                    setIsNextRound(1)
+                }
+            })
+    })
     const onclick = () => {
-        window.location = redirect
+        if (round === 'Round-1') {
+            if (isNextRound === 1) {
+                sessionStorage.setItem('round', 'round2')
+                window.location = redirect
+            }
+            else {
+                toast.error("Round 2 is yet to start", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
+                Axios.get('http://localhost:5000/admin/control')
+                    .then(response => {
+                        if (round === 'Round-1' && response.data[0].round2 === '1') {
+                            setIsNextRound(1)
+                        }
+                    })
+            }
+        } else { window.location = redirect }
     }
 
     const createSquare = () => {
@@ -28,23 +53,23 @@ const ScoreCard = ({redirect, score, round, nextRound}) => {
         square.style.width = 20 + size + 'px';
         square.style.height = 20 + size + 'px';
 
-        square.style.top = (Math.random() * window.innerHeight)-100 +'px';
-        square.style.bottom = (Math.random() * window.innerHeight)-100 +'px';
-        square.style.left = (Math.random() * window.innerWidth)-70 +'px';
-        square.style.right = (Math.random() * window.innerWidth)-100 +'px';
+        square.style.top = (Math.random() * window.innerHeight) - 100 + 'px';
+        square.style.bottom = (Math.random() * window.innerHeight) - 100 + 'px';
+        square.style.left = (Math.random() * window.innerWidth) - 70 + 'px';
+        square.style.right = (Math.random() * window.innerWidth) - 100 + 'px';
 
         square.style.background = bg;
 
-        if(document.getElementById('round_score')){
+        if (document.getElementById('round_score')) {
             section.appendChild(square)
         }
 
         setTimeout(() => {
-            square.remove() 
+            square.remove()
         }, 5000)
     }
 
-    setInterval(() => {createSquare()}, 150);
+    setInterval(() => { createSquare() }, 150);
     return (
         <div className='round-one-score-page' id='round_score'>
             <div className='round-one-score'>
@@ -55,7 +80,7 @@ const ScoreCard = ({redirect, score, round, nextRound}) => {
             </div>
         </div>
     )
-    }
+}
 
 const mapStateToProps = (state) => ({
     currentUser: state.user
