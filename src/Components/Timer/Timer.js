@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 class Timer extends Component {
     render() {
         if (sessionStorage.round === 'round1') {
-            const date = Date.parse(new Date("2020-09-23 20:00:00"))
+            const date = Date.parse(new Date("2020-09-24 20:00:00"))
             return (
                 <Countdown Countdown date={date} >
                     {
@@ -19,7 +19,7 @@ class Timer extends Component {
         }
 
         if (sessionStorage.round === 'round2') {
-            const date = Date.parse(new Date("2020-09-23 20:30:00"))
+            const date = Date.parse(new Date("2020-09-24 20:30:00"))
             return (
                 <Countdown Countdown date={date} >
                     {
@@ -30,7 +30,7 @@ class Timer extends Component {
         }
 
         if (sessionStorage.round === 'round3') {
-            const date = Date.parse(new Date("2020-09-23 20:40:00"))
+            const date = Date.parse(new Date("2020-09-24 20:40:00"))
             return (
                 <Countdown Countdown date={date} >
                     {
