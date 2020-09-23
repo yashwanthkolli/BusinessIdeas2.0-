@@ -4,7 +4,7 @@ import Axios from 'axios'
 
 import ScoreCard from '../../Components/ScoreCard/ScoreCard';
 
-
+import url from '../../Components/Url/Url'
 
 class RoundOneScore extends Component {
     constructor() {
@@ -19,9 +19,9 @@ class RoundOneScore extends Component {
         const route = {
             path: '/round1/score',
         }
-        Axios.post('http://localhost:5000/user/path/' + this.props.currentUser.currentUser._id, route)
+        Axios.post(url + 'user/path/' + this.props.currentUser.currentUser._id, route)
 
-        Axios.get('http://localhost:5000/user/' + this.props.currentUser.currentUser._id)
+        Axios.get(url + 'user/' + this.props.currentUser.currentUser._id)
             .then(response => {
                 if (response.status === 200) {
                     this.setState({
@@ -33,7 +33,7 @@ class RoundOneScore extends Component {
                 console.log(error);
             })
 
-        Axios.get('http://localhost:5000/admin/control')
+        Axios.get(url + 'admin/control')
             .then(response => {
                 if (response.data[0].round2 === '1') {
                     this.setState({ control: 1 });

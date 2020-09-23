@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import CompanyCard from '../../Components/CompanyCard/CompanyCard'
 import Modal from 'react-modal';
+import url from '../../Components/Url/Url'
 
 import './Round2.Styles.css'
 import Axios from 'axios';
@@ -26,7 +27,7 @@ class StockMarket extends Component {
     }
 
     componentDidMount() {
-        Axios.get('http://localhost:5000/stock/companylist',
+        Axios.get(url + 'stock/companylist',
             {
                 headers: {
                     "authorization": "Bearer " + sessionStorage.usertoken
@@ -39,9 +40,9 @@ class StockMarket extends Component {
         const route = {
             path: this.props.match.url,
         }
-        Axios.post('http://localhost:5000/user/path/' + this.props.currentUser.currentUser._id, route)
+        Axios.post(url + 'user/path/' + this.props.currentUser.currentUser._id, route)
 
-        Axios.get('http://localhost:5000/admin/control')
+        Axios.get(url + 'admin/control')
             .then(response => {
                 if (response.data[0].round3 === '1') {
                     this.setState({ control: 1 });
@@ -99,10 +100,10 @@ class StockMarket extends Component {
                     }
                     console.log(points)
                     var id = this.props.currentUser.currentUser._id;
-                    Axios.post('http://localhost:5000/user/company1/' + id, points)
-                    Axios.post('http://localhost:5000/user/company2/' + id, points)
-                    Axios.post('http://localhost:5000/user/invest1/' + id, points)
-                    Axios.post('http://localhost:5000/user/invest2/' + id, points)
+                    Axios.post(url + 'user/company1/' + id, points)
+                    Axios.post(url + 'user/company2/' + id, points)
+                    Axios.post(url + 'user/invest1/' + id, points)
+                    Axios.post(url + 'user/invest2/' + id, points)
                 } else {
                     toast.error("Cannot invest in more than 2 stocks", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
                 }
@@ -127,7 +128,7 @@ class StockMarket extends Component {
         }
         else {
             toast.error("Round 3 is yet to start!", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
-            Axios.get('http://localhost:5000/admin/control')
+            Axios.get(url + 'admin/control')
                 .then(response => {
                     if (response.data[0].round3 === '1') {
                         this.setState({ control: 1 });

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import './QuestionCard.Styles.css';
 import { setScore, updateScore } from '../../Redux/User/UserActions';
 import Axios from 'axios';
+import url from '../Url/Url';
 
 const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questions, setScore }) => {
     useEffect(() => {
@@ -39,7 +40,7 @@ const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questi
             const question = {
                 flag: 1  //answered
             }
-            Axios.post('http://localhost:5000/user/question/' + parseInt(index + 1) + '/' + currentUser.currentUser._id, question)
+            Axios.post(url + 'user/question/' + parseInt(index + 1) + '/' + currentUser.currentUser._id, question)
             if (result[result.length - 1] === true) {
                 updateScore(currentUser.score)
                 const points = currentUser.score === 0 ?
@@ -49,7 +50,7 @@ const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questi
                         score1: currentUser.score + 1000
                     }
                 var id = currentUser.currentUser._id;
-                Axios.post('http://localhost:5000/user/score1/' + id, points)
+                Axios.post(url + 'user/score1/' + id, points)
             }
             var div = document.getElementById(respons.name)
             var form = document.getElementById(respons.name + 'form')

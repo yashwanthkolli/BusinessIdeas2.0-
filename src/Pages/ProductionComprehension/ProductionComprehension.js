@@ -4,6 +4,7 @@ import Comprehension from '../../Components/Comprehension/Comprehension';
 import './ProductionComprehension.Styles.css'
 import Axios from 'axios';
 import { connect } from 'react-redux';
+import url from '../../Components/Url/Url'
 
 class ProductionComprehension extends Component {
     constructor() {
@@ -14,7 +15,7 @@ class ProductionComprehension extends Component {
     }
 
     componentDidMount() {
-        Axios.get('http://localhost:5000/company/info',
+        Axios.get(url + 'company/info',
             {
                 headers: {
                     "authorization": "Bearer " + sessionStorage.usertoken

@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify';
+import url from '../Url/Url';
 
 import './ScoreCard.Styles.css'
 
@@ -9,7 +10,7 @@ import './ScoreCard.Styles.css'
 const ScoreCard = ({ redirect, score, round, nextRound, control }) => {
     const [isNextRound, setIsNextRound] = useState(0)
     useEffect(() => {
-        Axios.get('http://localhost:5000/admin/control')
+        Axios.get(url + 'admin/control')
             .then(response => {
                 if (round === 'Round-1' && response.data[0].round2 === '1') {
                     setIsNextRound(1)
@@ -24,7 +25,7 @@ const ScoreCard = ({ redirect, score, round, nextRound, control }) => {
             }
             else {
                 toast.error("Round 2 is yet to start", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
-                Axios.get('http://localhost:5000/admin/control')
+                Axios.get(url + 'admin/control')
                     .then(response => {
                         if (round === 'Round-1' && response.data[0].round2 === '1') {
                             setIsNextRound(1)

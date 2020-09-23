@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import url from '../../Components/Url/Url'
 
 import ScoreCard from '../../Components/ScoreCard/ScoreCard';
 
@@ -16,11 +17,11 @@ class RoundThreeScore extends Component {
         const route = {
             path: '/round3/score',
         }
-        Axios.post('http://localhost:5000/user/path/' + this.props.currentUser.currentUser._id, route)
+        Axios.post(url + 'user/path/' + this.props.currentUser.currentUser._id, route)
     }
 
     render() {
-        Axios.get('http://localhost:5000/user/' + this.props.currentUser.currentUser._id)
+        Axios.get(url + 'user/' + this.props.currentUser.currentUser._id)
             .then(response => {
                 if (response.status === 200) {
                     this.setState({

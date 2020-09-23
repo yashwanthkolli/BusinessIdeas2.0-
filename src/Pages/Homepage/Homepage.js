@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { ReactComponent as Logo } from '../../Assets/business.svg';
 import axios from 'axios';
+import url from '../../Components/Url/Url'
 
 import './Homepage.Styles.css';
 import { toast } from 'react-toastify';
@@ -40,13 +41,13 @@ export default class HomePage extends Component {
         document.getElementsByName('email')[0].value = ''
         document.getElementsByName('password')[0].value = ''
 
-        axios.get('http://localhost:5000/admin/control')
+        axios.get(url + 'admin/control')
             .then(response => {
 
                 this.setState({ control: response.data[0].round1 });
                 if (response.data[0].round1 === '1') {
 
-                    axios.post('http://localhost:5000/user/login', user)
+                    axios.post(url + 'user/login', user)
                         .then(res => {
                             if (res.status === 200) {
                                 if (res.data.value) {

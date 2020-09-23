@@ -12,6 +12,7 @@ import Body from '../../Components/Body/Body';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Axios from 'axios';
+import url from '../../Components/Url/Url'
 
 
 const mapDispatchToProps = dispatch => ({
@@ -37,7 +38,7 @@ class IntroductionPage extends Component {
   componentDidMount() {
     sessionStorage.setItem('round', 'round1')
     console.log(sessionStorage)
-    Axios.get('http://localhost:5000/user/' + this.props.match.params.id)
+    Axios.get(url + 'user/' + this.props.match.params.id)
       .then(response => {
         if (response.status === 200) {
           this.setState({
@@ -54,7 +55,7 @@ class IntroductionPage extends Component {
       })
 
 
-    Axios.get('http://localhost:5000/company/info',
+    Axios.get(url + 'company/info',
       {
         headers: {
           "authorization": "Bearer " + sessionStorage.usertoken

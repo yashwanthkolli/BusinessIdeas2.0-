@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 
 import './ProductionQuestion.Styles.css';
 import { connect } from 'react-redux';
+import url from '../../Components/Url/Url'
 
 class ProductionQuestions extends Component {
     constructor() {
@@ -16,7 +17,7 @@ class ProductionQuestions extends Component {
 
     componentDidMount() {
         toast.warn("You are NOT allowed to CHANGE the answer after submitting", { className: 'companyAllotmentPopUp' })
-        Axios.get('http://localhost:5000/' + this.props.match.params.companyName + '/getproduction',
+        Axios.get(url + this.props.match.params.companyName + '/getproduction',
             {
                 headers: {
                     "authorization": "Bearer " + sessionStorage.usertoken
