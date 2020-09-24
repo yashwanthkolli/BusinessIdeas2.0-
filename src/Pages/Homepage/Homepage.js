@@ -28,10 +28,6 @@ export default class HomePage extends Component {
         this.handlePass = this.handlePass.bind(this);
     }
 
-    componentDidMount() {
-        sessionStorage.clear()
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         const user = {

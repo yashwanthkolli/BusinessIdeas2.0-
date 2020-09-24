@@ -80,7 +80,7 @@ class IntroductionPage extends Component {
                 <Link to={
                   this.state.page ?
                     this.state.page
-                    : '/comprehensionRules/' + this.state.CompanyName
+                    : '/round1set/' + this.props.match.params.id
                 }>
                   <button>Go &#8594;</button>
                 </Link>

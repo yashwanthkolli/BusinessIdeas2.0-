@@ -3,10 +3,12 @@ import React, { Component } from 'react'
 import url from '../../Components/Url/Url'
 
 export default class PseudoRoundSet extends Component {
-    render() {
+    componentDidMount() {
         Axios.get(url + 'admin/gettimer')
-            .then(res => sessionStorage.setItem('round', res.data[0].round))
-        window.location = '/redirect/' + this.props.match.params.id
+            .then(res => { sessionStorage.setItem('round', res.data[0].round) })
+    }
+    render() {
+        setTimeout(() => window.location = '/redirect/' + this.props.match.params.id, 100)
         return (
             <div>Hello</div>
         )

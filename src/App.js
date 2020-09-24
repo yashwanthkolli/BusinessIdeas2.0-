@@ -34,6 +34,8 @@ import ScoreSheet from './Pages/ScoreSheet/ScoreSheet';
 import NavBar from './Components/NavBar/NavBar';
 import PseudoRedirect from './Pages/PseudoRedirectPage/PseudoRedirect';
 import PseudoRoundSet from './Pages/PseudoRoundSetPage/PseudoRoundSet';
+import AfterIntro from './Pages/PseudoRoundOneTimeSet/PseudoRoundOneTimeSet';
+import Redirect1 from './Pages/PseudoRoundOneTimeSet/Redirect1';
 
 Modal.setAppElement('#root')
 
@@ -64,6 +66,8 @@ class App extends Component {
               <Route exact path='/setRound/:id' component={PseudoRoundSet} />
               <Route exact path='/redirect/:id' component={PseudoRedirect} />
               <Route exact path='/intro/:id' component={IntroductionPage} />
+              <Route exact path='/round1set/:id' component={AfterIntro} />
+              <Route exact path='/redirect1/:id' component={Redirect1} />
               <Route exact path='/comprehensionRules/:companyName' component={ComprehensionRules} />
               <Route exact path='/comprehension/:companyName/Production' component={ProductionComprehension} />
               <Route exact path='/comprehension/:companyName/ProductionQuestions' component={ProductionQuestions} />

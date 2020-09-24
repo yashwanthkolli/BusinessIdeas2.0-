@@ -54,10 +54,10 @@ class Round3Rules extends Component {
                                 <li>
                                     Capital investment(rupees)/(points) will be given as follows:
                                     <ul>
-                                        <li>Best answer- <strong>4000 Rs</strong></li>
-                                        <li>2nd Best answer- <strong>3000 Rs</strong></li>
-                                        <li>3rd Best answer- <strong>2000 Rs</strong></li>
-                                        <li>4th Best answer- <strong>1000 Rs</strong></li>
+                                        <li>Best answer- <strong>&#8377; 10000</strong></li>
+                                        <li>2nd Best answer- <strong>&#8377; 6000</strong></li>
+                                        <li>3rd Best answer- <strong>&#8377; 4000</strong></li>
+                                        <li>4th Best answer- <strong>&#8377; 0</strong></li>
                                     </ul>
                                 </li>
                                 <li><strong>No eliminations</strong> for this round.</li>
