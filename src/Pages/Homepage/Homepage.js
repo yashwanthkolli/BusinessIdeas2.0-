@@ -28,6 +28,13 @@ export default class HomePage extends Component {
         this.handlePass = this.handlePass.bind(this);
     }
 
+    componentDidMount() {
+        if (sessionStorage.round) {
+            sessionStorage.clear()
+            window.location.reload(false)
+        }
+    }
+
     handleSubmit(e) {
         e.preventDefault();
         const user = {
@@ -104,32 +111,34 @@ export default class HomePage extends Component {
     }
 
     render() {
-        return (
-            <div className='container'>
-                <div className='logo-container'>
-                    <Logo className='logo' />
-                </div>
-                <div className='login'>
-                    <div className='login-form'>
-                        <h2 className='title'>Login</h2>
+        if (!sessionStorage.round) {
+            return (
+                <div className='container'>
+                    <div className='logo-container'>
+                        <Logo className='logo' />
+                    </div>
+                    <div className='login'>
+                        <div className='login-form'>
+                            <h2 className='title'>Login</h2>
 
-                        <form className='input' onSubmit={this.handleSubmit}>
-                            <div className='input-box'>
-                                <label>Team Id</label>
-                                <input name='email' placeholder='John@gmail.com' type='email' onChange={this.handleEmail} required />
-                            </div>
-                            <div className='input-box'>
-                                <label>Password</label>
-                                <input name='password' placeholder='******' type='password' onChange={this.handlePass} required />
-                            </div>
-                            <div className='button'>
-                                <button type='submit' onClick={this.handleSubmit}>LOGIN</button>
-                            </div>
-                        </form>
+                            <form className='input' onSubmit={this.handleSubmit}>
+                                <div className='input-box'>
+                                    <label>Team Id</label>
+                                    <input name='email' placeholder='John@gmail.com' type='email' onChange={this.handleEmail} required />
+                                </div>
+                                <div className='input-box'>
+                                    <label>Password</label>
+                                    <input name='password' placeholder='******' type='password' onChange={this.handlePass} required />
+                                </div>
+                                <div className='button'>
+                                    <button type='submit' onClick={this.handleSubmit}>LOGIN</button>
+                                </div>
+                            </form>
 
+                        </div>
                     </div>
                 </div>
-            </div>
-        )
+            )
+        } else { return (<div className='loading'>Loading...</div>) }
     }
 }
