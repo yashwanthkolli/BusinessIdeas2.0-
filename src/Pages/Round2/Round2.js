@@ -27,27 +27,29 @@ class StockMarket extends Component {
     }
 
     componentDidMount() {
-        Axios.get(url + 'stock/companylist',
-            {
-                headers: {
-                    "authorization": "Bearer " + sessionStorage.usertoken
-                }
-            })
-            .then(res => this.setState({ companies: res.data }))
+        if (this.props.currentUser.currentUser) {
+            Axios.get(url + 'stock/companylist',
+                {
+                    headers: {
+                        "authorization": "Bearer " + sessionStorage.usertoken
+                    }
+                })
+                .then(res => this.setState({ companies: res.data }))
 
-        this.setState({ capital: this.props.currentUser.currentUser.score1 })
+            this.setState({ capital: this.props.currentUser.currentUser.score1 })
 
-        const route = {
-            path: this.props.match.url,
-        }
-        Axios.post(url + 'user/path/' + this.props.currentUser.currentUser._id, route)
+            const route = {
+                path: this.props.match.url,
+            }
+            Axios.post(url + 'user/path/' + this.props.currentUser.currentUser._id, route)
 
-        Axios.get(url + 'admin/control')
-            .then(response => {
-                if (response.data[0].round3 === '1') {
-                    this.setState({ control: 1 });
-                }
-            })
+            Axios.get(url + 'admin/control')
+                .then(response => {
+                    if (response.data[0].round3 === '1') {
+                        this.setState({ control: 1 });
+                    }
+                })
+        } else { window.location = '/' }
     }
 
     onclick = (e) => {
