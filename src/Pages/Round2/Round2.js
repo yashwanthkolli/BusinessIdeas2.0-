@@ -155,7 +155,7 @@ class StockMarket extends Component {
                                 <div className='investment-details'>
                                     {
                                         this.state.investedCompanies.map((investedCompany, index) =>
-                                            <p key={index}>You have invested <strong>Rs. {investedCompany.investedAmount.toFixed(2)}</strong> in <strong>{investedCompany.name}</strong></p>
+                                            <p key={index}>You have invested <strong>&#8377; {investedCompany.investedAmount.toFixed(2)}</strong> in <strong>{investedCompany.name}</strong></p>
                                         )
                                     }
                                 </div>
@@ -171,7 +171,7 @@ class StockMarket extends Component {
                                                     <tbody>
                                                         <tr>
                                                             <td>Price:</td>
-                                                            <td>Rs. {this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price}</td>
+                                                            <td>&#8377; {this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Last Updated:</td>

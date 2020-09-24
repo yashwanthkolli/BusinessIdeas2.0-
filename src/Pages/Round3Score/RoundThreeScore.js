@@ -21,18 +21,18 @@ class RoundThreeScore extends Component {
     }
 
     render() {
-        Axios.get(url + 'user/' + this.props.currentUser.currentUser._id)
-            .then(response => {
-                if (response.status === 200) {
-                    this.setState({
-                        round3Score: response.data.score3
-                    })
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
         if (sessionStorage.usertoken && this.props.currentUser.currentUser) {
+            Axios.get(url + 'user/' + this.props.currentUser.currentUser._id)
+                .then(response => {
+                    if (response.status === 200) {
+                        this.setState({
+                            round3Score: response.data.score3
+                        })
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                })
             return (
                 <React.Fragment>
                     <ScoreCard

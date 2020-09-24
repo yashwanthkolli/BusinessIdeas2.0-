@@ -86,22 +86,22 @@ class ScoreSheet extends Component {
                 <div className='scoresheet-page'>
                     <div className='round1'>
                         <h1>Round 1</h1>
-                        <h3>Total Earnings: Rs. {properties.score1}</h3>
+                        <h3>Total Earnings: &#8377; {properties.score1}</h3>
                     </div>
                     {
                         investedCompanies.length ?
                             <div className='round2'>
                                 <h1>Round 2</h1>
-                                <p>You have invested Rs. {totalInvestment()} in following companies</p>
+                                <p>You have invested &#8377; {totalInvestment()} in following companies</p>
                                 <div className='companies'>
                                     {
                                         investedCompanies.map(company =>
                                             <div key={company.name} className='company'>
                                                 <h3>{company.name.toUpperCase()}</h3>
-                                                <p>Invested Amount: Rs. {company.investedAmount.toFixed(2)}</p>
-                                                <p>Total Returns: Rs. {company.returns.toFixed(2)}</p>
+                                                <p>Invested Amount: &#8377; {company.investedAmount.toFixed(2)}</p>
+                                                <p>Total Returns: &#8377; {company.returns.toFixed(2)}</p>
                                                 <p className={this.checkGainOrLoss(company.returns - company.investedAmount)}>
-                                                    Profit: Rs. {(company.returns - company.investedAmount).toFixed(2)}
+                                                    Profit: &#8377; {(company.returns - company.investedAmount).toFixed(2)}
                                                 </p>
                                                 <p className={this.checkGainOrLoss(company.returns - company.investedAmount)}>
                                                     Returns Percentage: {((company.returns - company.investedAmount) * 100 / company.investedAmount).toFixed(2)}%
@@ -110,7 +110,7 @@ class ScoreSheet extends Component {
                                             </div>
                                         )
                                     }
-                                    <h1 className='total-round2'>Total Capital after Round 2: Rs. {parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))}</h1>
+                                    <h1 className='total-round2'>Total Capital after Round 2: &#8377; {parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))}</h1>
                                 </div>
                             </div>
                             :
@@ -121,8 +121,8 @@ class ScoreSheet extends Component {
                     }
                     <div className='round3'>
                         <h1>Round 3</h1>
-                        <h3>Round 3 Earnings: Rs. {properties.score3}</h3>
-                        <h3>Total Earnings After Round 3: Rs. {parseFloat(properties.score3) + parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))}</h3>
+                        <h3>Round 3 Earnings: &#8377; {properties.score3}</h3>
+                        <h3>Total Earnings After Round 3: &#8377; {parseFloat(properties.score3) + parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))}</h3>
                     </div>
                 </div>
             )

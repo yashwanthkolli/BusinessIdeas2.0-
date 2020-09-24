@@ -6,6 +6,7 @@ import url from '../../Components/Url/Url'
 import './Homepage.Styles.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import Axios from 'axios';
 toast.configure()
 
 export default class HomePage extends Component {
@@ -69,6 +70,8 @@ export default class HomePage extends Component {
                                         token: res.data.token,
                                         path: res.data.page
                                     })
+                                    Axios.get(url + 'admin/gettimer')
+                                        .then(res => sessionStorage.setItem('round', res.data[0].round))
                                     sessionStorage.setItem('usertoken', this.state.token);
                                     window.location = '/setRound/' + this.state.index;
                                 }
