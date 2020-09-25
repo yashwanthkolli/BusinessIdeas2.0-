@@ -82,6 +82,12 @@ class ScoreSheet extends Component {
                 }
                 return total
             }
+
+            const points = {
+                total: parseFloat(properties.score3) + parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))
+            }
+            Axios.post(url + 'user/total/' + this.props.match.params.id, points)
+
             return (
                 <div className='scoresheet-page'>
                     <div className='round1'>

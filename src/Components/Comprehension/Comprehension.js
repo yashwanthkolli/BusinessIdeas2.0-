@@ -11,7 +11,7 @@ import Axios from 'axios';
 import { setCurrentUser } from '../../Redux/User/UserActions';
 import url from '../Url/Url';
 
-const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension, currentUser }) => {
+const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension, currentUser, company }) => {
     useEffect(() => {
         const route = {
             path: currentPath,
@@ -44,7 +44,7 @@ const Comprehension = ({ currentPath, comprehensionName, redirect, comprehension
             </div>
             <div className='comprehension'>
                 <Header heading={comprehensionName + ' Comprehension'} />
-                <Body body={comprehension} />
+                <Body body={comprehension} name={comprehensionName} company={company} />
                 <div className='button'>
                     <Link to={redirect}><button>Questions</button></Link>
                 </div>

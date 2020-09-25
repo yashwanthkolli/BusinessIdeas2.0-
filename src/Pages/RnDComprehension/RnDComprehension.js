@@ -33,7 +33,13 @@ class RnDComprehension extends Component {
             return (
                 this.state.rndComprehension ?
                     <div className='rnd-comprehension-page'>
-                        <Comprehension comprehensionName='r&d' comprehension={this.state.rndComprehension} currentPath={this.props.match.url} redirect={this.props.match.url + 'Questions'} />
+                        <Comprehension
+                            comprehensionName='r&d'
+                            comprehension={this.state.rndComprehension}
+                            currentPath={this.props.match.url}
+                            redirect={this.props.match.url + 'Questions'}
+                            company={this.props.match.params.companyName}
+                        />
                     </div>
                     : <div className='loading'>Loading...</div>
             )

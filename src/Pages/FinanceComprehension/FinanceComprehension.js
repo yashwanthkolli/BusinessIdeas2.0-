@@ -32,7 +32,13 @@ class FinanceComprehension extends Component {
             return (
                 this.state.financeComprehension ?
                     <div className='finance-comprehension-page'>
-                        <Comprehension comprehensionName='finance' comprehension={this.state.financeComprehension} currentPath={this.props.match.url} redirect={this.props.match.url + 'Questions'} />
+                        <Comprehension
+                            comprehensionName='finance'
+                            comprehension={this.state.financeComprehension}
+                            currentPath={this.props.match.url}
+                            redirect={this.props.match.url + 'Questions'}
+                            company={this.props.match.params.companyName}
+                        />
                     </div>
                     : <div className='loading'>Loading...</div>
             )

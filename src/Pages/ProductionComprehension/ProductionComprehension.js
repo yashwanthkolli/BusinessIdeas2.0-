@@ -34,7 +34,13 @@ class ProductionComprehension extends Component {
             return (
                 this.state.productionComprehension ?
                     <div className='production-comprehension-page'>
-                        <Comprehension comprehensionName='production' comprehension={this.state.productionComprehension} currentPath={this.props.match.url} redirect={this.props.match.url + 'Questions'} />
+                        <Comprehension
+                            comprehensionName='production'
+                            comprehension={this.state.productionComprehension}
+                            currentPath={this.props.match.url}
+                            redirect={this.props.match.url + 'Questions'}
+                            company={this.props.match.params.companyName}
+                        />
                     </div>
                     : <div className='loading'>Loading...</div>
             )

@@ -33,7 +33,13 @@ class SalesComprehension extends Component {
             return (
                 this.state.salesComprehension ?
                     <div className='sales-comprehension-page'>
-                        <Comprehension comprehensionName='sales' comprehension={this.state.salesComprehension} currentPath={this.props.match.url} redirect={this.props.match.url + 'Questions'} />
+                        <Comprehension
+                            comprehensionName='sales'
+                            comprehension={this.state.salesComprehension}
+                            currentPath={this.props.match.url}
+                            redirect={this.props.match.url + 'Questions'}
+                            company={this.props.match.params.companyName}
+                        />
                     </div>
                     : <div className='loading'>Loading...</div>
             )
