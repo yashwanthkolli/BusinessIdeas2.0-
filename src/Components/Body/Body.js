@@ -27,23 +27,23 @@ const Body = ({ body, company, name }) => {
             <div className='body'>
                 {set1.map((para, ind) => <p key={ind}>{para}</p>)}
                 {image1 ?
-                    <div className='img-container'>
-                        <div className='img'>
-                            <img src={image1} alt='ComprehensionImage' />
-                        </div>
-                    </div> :
-                    null
+                    <p>
+                        <img id='img1' src={image1} alt='ComprehensionImage' />
+                        {set2[0]}
+                    </p>
+                    :
+                    <p>{set2[0]}</p>
                 }
-                {set2.map((para, ind) => <p key={ind}>{para}</p>)}
-                <div className='img-container'>
-                    {image2 ?
-                        <div className='img'>
-                            <img src={image2} alt='ComprehensionImage' />
-                        </div> :
-                        null
-                    }
-                </div>
-                {set3.map((para, ind) => <p key={ind}>{para}</p>)}
+                {set2.slice(1).map((para, ind) => <p key={ind}>{para}</p>)}
+                {image2 ?
+                    <p>
+                        <img id='img2' src={image2} alt='ComprehensionImage' />
+                        {set3[0]}
+                    </p>
+                    :
+                    <p>{set3[0]}</p>
+                }
+                {set3.slice(1).map((para, ind) => <p key={ind}>{para}</p>)}
             </div>
         )
     } else {

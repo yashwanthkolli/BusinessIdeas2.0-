@@ -181,11 +181,11 @@
 
 .ReactModal__Content .popup .popup-contents::-webkit-scrollbar{
     width: 10px;
-    background-color: transparent;
+    background-color: #f8d229;
   }
  
   ::-webkit-scrollbar-thumb{
-    background-color: rgba(0,0,0,0.9);
+    background-color: #199854;
     border-radius: 15px;
   }
 
@@ -194,6 +194,7 @@
     margin: auto;
     height: 70% !important;
     margin-top: 10px;
+    margin-bottom: 60px;
 }
 h1{
     margin: 0;

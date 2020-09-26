@@ -9,10 +9,7 @@
 }
 
 .body .img-container{
-    display: flex;
     flex-direction: row;
-    width: 100%;    
-    justify-content: space-evenly;
 }
 
 .body .img{
@@ -20,7 +17,19 @@
     position: relative;
 }
 
-.body .img::before{
+.body #img1{
+    float: left;
+    width: 600px;
+    margin-right: 20px;
+}
+
+.body #img2{
+    float: right;
+    width: 600px;
+    margin-left: 20px;
+}
+
+/* .body .img::before{
     content: '';
     position: absolute;
     top: -3px;
@@ -30,4 +39,4 @@
     background: linear-gradient(180deg, #2ba15f,#f8d229);
     z-index: -2;
     transition: 0.5s;
-}
+} */
