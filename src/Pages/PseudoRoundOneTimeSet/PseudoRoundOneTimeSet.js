@@ -5,7 +5,7 @@ export default class AfterIntro extends Component {
         sessionStorage.setItem('round', 'round1')
         window.location = '/redirect1/' + this.props.match.params.id
         return (
-            <div>Hello</div>
+            <div></div>
         )
     }
 }

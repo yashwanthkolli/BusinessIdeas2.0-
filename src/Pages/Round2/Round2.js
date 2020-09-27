@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { updateInvestedCompanies, updateInvestmentScore } from '../../Redux/User/UserActions';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { Link } from 'react-router-dom';
 toast.configure()
 
 class StockMarket extends Component {
@@ -21,8 +22,7 @@ class StockMarket extends Component {
             selectedCompany: null,
             isPopUpOpen: false,
             investedAmount: 0,
-            investedCompanies: [],
-            control: 0
+            investedCompanies: []
         }
     }
 
@@ -81,8 +81,7 @@ class StockMarket extends Component {
                     this.setState({ capital: capital - investedAmount })
                     const existingCompany = investedCompanies.find((company) => company.name === selectedCompany.name)
                     if (existingCompany) {
-                        existingCompany.investedAmount = existingCompany.investedAmount + investedAmount
-                        existingCompany.returns = (selectedCompany.profitpercent + 100) * existingCompany.investedAmount / 100
+                        toast.error("You have already invested in this company, canNOT invest again", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
                     } else {
                         investedCompanies.push({
                             name: selectedCompany.name,
@@ -90,6 +89,7 @@ class StockMarket extends Component {
                             returns: (selectedCompany.profitpercent + 100) * investedAmount / 100,
                             data: selectedCompany.data
                         })
+
                     }
                     this.props.updateInvestmentScore(this.score())
                     this.props.updateInvestedCompanies(investedCompanies)
@@ -100,7 +100,6 @@ class StockMarket extends Component {
                         invest1: investedCompanies[0] ? investedCompanies[0].investedAmount : 0,
                         invest2: investedCompanies[1] ? investedCompanies[1].investedAmount : 0
                     }
-                    console.log(points)
                     var id = this.props.currentUser.currentUser._id;
                     Axios.post(url + 'user/company1/' + id, points)
                     Axios.post(url + 'user/company2/' + id, points)
@@ -121,22 +120,6 @@ class StockMarket extends Component {
         const { investedCompanies } = this.state
         const returns = investedCompanies.reduce((a, b) => a + b.returns, 0).toFixed(2)
         return (parseFloat(returns) + parseFloat(this.state.capital.toFixed(2)) - parseFloat(this.state.investedAmount.toFixed(2)))
-    }
-
-    nextRound = () => {
-        if (this.state.control === 1) {
-            sessionStorage.setItem('round', 'round3')
-            window.location = '/round3/rules/' + this.props.currentUser.currentUser._id
-        }
-        else {
-            toast.error("Round 3 is yet to start!", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
-            Axios.get(url + 'admin/control')
-                .then(response => {
-                    if (response.data[0].round3 === '1') {
-                        this.setState({ control: 1 });
-                    }
-                })
-        }
     }
 
     render() {
@@ -162,7 +145,7 @@ class StockMarket extends Component {
                                     }
                                 </div>
                             </div>
-                            <button onClick={this.nextRound}>Round 3</button>
+                            <Link to='/round2/score'><button>Next</button></Link>
                             <Modal isOpen={this.state.isPopUpOpen} onRequestClose={() => this.setState({ isPopUpOpen: false })}>
                                 {
                                     this.state.selectedCompany ?

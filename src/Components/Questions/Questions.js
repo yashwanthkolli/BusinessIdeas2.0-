@@ -21,6 +21,7 @@ const Questions = ({ redirect, questions, questionsName, currentUser, currentPat
     })
 
     useEffect(() => {
+        window.scrollTo(0, 0)
         Axios.get(url + 'user/' + currentUser.currentUser._id)
             .then(response => {
                 if (response.status === 200) {

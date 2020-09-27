@@ -36,6 +36,7 @@ import PseudoRedirect from './Pages/PseudoRedirectPage/PseudoRedirect';
 import PseudoRoundSet from './Pages/PseudoRoundSetPage/PseudoRoundSet';
 import AfterIntro from './Pages/PseudoRoundOneTimeSet/PseudoRoundOneTimeSet';
 import Redirect1 from './Pages/PseudoRoundOneTimeSet/Redirect1';
+import RoundTwoScore from './Pages/Round2Score/RoundTwoScore';
 
 Modal.setAppElement('#root')
 
@@ -80,6 +81,7 @@ class App extends Component {
               <Route exact path='/round1/score' component={RoundOneScore} />
               <Route exact path='/round2/rules/:id' component={Round2Rules} />
               <Route exact path='/stockmarket' component={StockMarket} />
+              <Route exact path='/round2/score' component={RoundTwoScore} />
               <Route exact path='/crisis/production/1' component={ProductionCrisis1} />
               <Route exact path='/crisis/production/2' component={ProductionCrisis2} />
               <Route exact path='/crisis/finance/1' component={FinanceCrisis1} />

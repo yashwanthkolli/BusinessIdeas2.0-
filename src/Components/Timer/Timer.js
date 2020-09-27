@@ -28,7 +28,7 @@ class Timer extends Component {
         if (sessionStorage.round === 'round1' && this.state.round1Time) {
             const date = Date.parse(new Date(this.state.round1Time))
             return (
-                <Countdown Countdown date={date} >
+                <Countdown Countdown date={date} daysInHours={true}>
                     {
                         <Redirect to='/round1/score' />
                     }
@@ -39,9 +39,9 @@ class Timer extends Component {
         if (sessionStorage.round === 'round2' && this.state.round2Time) {
             const date = Date.parse(new Date(this.state.round2Time))
             return (
-                <Countdown Countdown date={date} >
+                <Countdown Countdown date={date} daysInHours={true}>
                     {
-                        <Redirect to='/crisis/production/1' />
+                        <Redirect to='/round2/score' />
                     }
                 </Countdown>
             )
@@ -50,7 +50,7 @@ class Timer extends Component {
         if (sessionStorage.round === 'round3' && this.state.round3Time) {
             const date = Date.parse(new Date(this.state.round3Time))
             return (
-                <Countdown Countdown date={date} >
+                <Countdown Countdown date={date} daysInHours={true} >
                     {
                         <Redirect to='/round3/score' />
                     }

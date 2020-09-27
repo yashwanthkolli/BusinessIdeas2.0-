@@ -10,7 +10,7 @@ export default class PseudoRoundSet extends Component {
     render() {
         setTimeout(() => window.location = '/redirect/' + this.props.match.params.id, 100)
         return (
-            <div>Hello</div>
+            <div></div>
         )
     }
 }

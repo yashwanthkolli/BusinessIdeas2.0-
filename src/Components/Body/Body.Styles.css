@@ -3,7 +3,7 @@
     height: fit-content;
     padding: 10px 0;
     margin: 0 5%;
-    font-size: 24px;
+    font-size: 18px;
     letter-spacing: 2px;
     color: white;
 }
@@ -19,13 +19,13 @@
 
 .body #img1{
     float: left;
-    width: 600px;
+    width: 450px;
     margin-right: 20px;
 }
 
 .body #img2{
     float: right;
-    width: 600px;
+    width: 450px;
     margin-left: 20px;
 }
 

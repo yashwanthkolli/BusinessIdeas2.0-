@@ -128,7 +128,10 @@ class ScoreSheet extends Component {
                     <div className='round3'>
                         <h1>Round 3</h1>
                         <h3>Round 3 Earnings: &#8377; {properties.score3}</h3>
-                        <h3>Total Earnings After Round 3: &#8377; {parseFloat(properties.score3) + parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))}</h3>
+                    </div>
+                    <div className='round3'>
+                        <h1>Total</h1>
+                        <h3>Total Earnings: &#8377; {parseFloat(properties.score3) + parseFloat(properties.score1) + parseFloat(totalRound2Profit().toFixed(2))}</h3>
                     </div>
                 </div>
             )
