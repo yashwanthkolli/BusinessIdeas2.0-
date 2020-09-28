@@ -212,3 +212,10 @@ h1{
     padding: 20px;
     font-size: 15px;
 }
+
+@media (max-width: 541px) {
+  .ReactModal__Content {
+    display: none;
+    visibility: hidden;
+  }
+}

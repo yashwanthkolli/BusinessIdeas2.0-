@@ -74,7 +74,10 @@ const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questi
                     <h3>{question}</h3>
                     <form id={_id + 'form'} onSubmit={onSubmitMcqs}>
                         {
-                            options.map((option, index) => <div className='options' key={index + 1}><input type='radio' name={_id} value={String.fromCharCode(97 + index)} /><label>{option.toUpperCase()}</label></div>)
+                            options.map((option, index) =>
+                                <div className='options' key={index + 1}>
+                                    <label htmlFor={_id + index}><input type='radio' id={_id + index} name={_id} value={String.fromCharCode(97 + index)} />{option.toUpperCase()}</label>
+                                </div>)
                         }
                         <button type='submit' id='submit-btn'>Submit</button>
                     </form>

@@ -78,7 +78,7 @@ const Crisis = ({ heading, crisis, question, options, redirect, currentUser, upd
             </div>
             <form onSubmit={onsubmit}>
                 {
-                    options.map((option, index) => <div className='options' key={index + 1}><input type='radio' name='prod-crisis-1' value={rankToScore(option.rank)} /><label>{option.option}</label></div>)
+                    options.map((option, index) => <div className='options' key={index + 1}><input type='radio' name='prod-crisis-1' id={index} value={rankToScore(option.rank)} /><label htmlFor={index}>{option.option}</label></div>)
                 }
                 <button type='submit' id='submit'>Submit</button>
             </form>
