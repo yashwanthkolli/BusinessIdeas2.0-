@@ -37,7 +37,6 @@ class IntroductionPage extends Component {
 
   componentDidMount() {
     sessionStorage.setItem('round', 'round1')
-    console.log(sessionStorage)
     Axios.get(url + 'user/' + this.props.match.params.id)
       .then(response => {
         if (response.status === 200) {
@@ -47,7 +46,9 @@ class IntroductionPage extends Component {
           })
 
           this.props.setCurrentUser(response.data)
-          toast.success('You are alloted with the company ' + response.data.company.toUpperCase(), { className: 'companyAllotmentPopUp' })
+          response.data.company.toUpperCase() === "LNT" ?
+            toast.success('You are alloted with the company ' + 'L&T', { className: 'companyAllotmentPopUp' }) :
+            toast.success('You are alloted with the company ' + response.data.company.toUpperCase(), { className: 'companyAllotmentPopUp' })
         }
       })
       .catch((error) => {

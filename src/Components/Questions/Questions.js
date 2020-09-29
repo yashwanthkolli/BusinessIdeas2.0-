@@ -32,6 +32,8 @@ const Questions = ({ redirect, questions, questionsName, currentUser, currentPat
             .catch((error) => {
                 console.log(error);
             })
+
+        window.history.pushState(null, null, '/')
     }, [])
 
     return (

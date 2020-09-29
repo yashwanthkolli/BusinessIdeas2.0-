@@ -49,8 +49,8 @@ class Round3Rules extends Component {
                                         <li>Research and Development</li>
                                     </ul>
                                 </li>
-                                <li>1 Questions will be asked on each domain/vertical and answering them is acompulsion. Thus making a total of 4 questions for this round.</li>
-                                <li>4 choices will be their for each question. However all 4 would be correct ranging from good to best answer.</li>
+                                <li>Two Questions will be asked on each domain/vertical and answering them is acompulsion. Thus making a total of eight questions for this round.</li>
+                                <li>Four choices will be their for each question. However all 4 would be correct ranging from good to best answer.</li>
                                 <li>
                                     Capital investment(rupees)/(points) will be given as follows:
                                     <ul>

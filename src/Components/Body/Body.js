@@ -17,6 +17,8 @@ const Body = ({ body, company, name }) => {
             setImage2(imageTwo)
         }
         catch (err) { }
+
+        window.history.pushState(null, null, '/')
     }, [])
 
     if (company && name) {

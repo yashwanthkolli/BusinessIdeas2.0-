@@ -98,7 +98,7 @@ class ScoreSheet extends Component {
                         investedCompanies.length ?
                             <div className='round2'>
                                 <h1>Round 2</h1>
-                                <p>You have invested &#8377; {totalInvestment()} in following companies</p>
+                                <p>You have invested &#8377; {totalInvestment().toFixed(2)} in following companies</p>
                                 <div className='companies'>
                                     {
                                         investedCompanies.map(company =>
@@ -107,7 +107,11 @@ class ScoreSheet extends Component {
                                                 <p>Invested Amount: &#8377; {company.investedAmount.toFixed(2)}</p>
                                                 <p>Total Returns: &#8377; {company.returns.toFixed(2)}</p>
                                                 <p className={this.checkGainOrLoss(company.returns - company.investedAmount)}>
-                                                    Profit: &#8377; {(company.returns - company.investedAmount).toFixed(2)}
+                                                    {
+                                                        this.checkGainOrLoss(company.returns - company.investedAmount) == 'green' ?
+                                                            <span>Profit : &#8377; {(company.returns - company.investedAmount).toFixed(2)}</span> :
+                                                            <span>Loss: &#8377; {(company.investedAmount - company.returns).toFixed(2)}</span>
+                                                    }
                                                 </p>
                                                 <p className={this.checkGainOrLoss(company.returns - company.investedAmount)}>
                                                     Returns Percentage: {((company.returns - company.investedAmount) * 100 / company.investedAmount).toFixed(2)}%
