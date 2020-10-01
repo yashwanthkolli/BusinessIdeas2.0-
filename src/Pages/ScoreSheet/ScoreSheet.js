@@ -141,9 +141,9 @@ class ScoreSheet extends Component {
                     </div>
                     <div className='footer'>
                         <p>The website is devloped by:</p>
-                        <div><a className='link' href='www.google.com'>Aneesh</a></div>
-                        <div><a className='link' href='www.google.com'>Milan</a></div>
-                        <div><a className='link' href='www.google.com'>Yashwanth</a></div>
+                        <div><a className='link' href='https://www.linkedin.com/in/aneesh-sarjit-573068194'>Aneesh Sarjit</a></div>
+                        <div><a className='link' href='https://www.linkedin.com/in/milan-mandal-3703231b8'>Milan Mandal</a></div>
+                        <div><a className='link' href='https://www.linkedin.com/in/yashwanth-kolli-37b3031b4'>Yashwanth Kolli</a></div>
                     </div>
                 </>
             )
