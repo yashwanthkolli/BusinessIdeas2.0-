@@ -60,7 +60,6 @@ class Round3Rules extends Component {
                                         <li>4th Best answer- <strong>&#8377; 0</strong></li>
                                     </ul>
                                 </li>
-                                <li><strong>No eliminations</strong> for this round.</li>
                                 <li>Time duration :<strong>1 Hr</strong>.</li>
                                 <li>Sum of 1st and 2nd round i.e. the comprehension and crisis round would be considered as total in beginning of 3rd round.</li>
                             </ol>

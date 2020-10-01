@@ -43,14 +43,23 @@ const QuestionCard = ({ questionDetails, index, currentUser, updateScore, questi
             Axios.post(url + 'user/question/' + parseInt(index + 1) + '/' + currentUser.currentUser._id, question)
             if (result[result.length - 1] === true) {
                 updateScore(currentUser.score)
-                const points = currentUser.score === 0 ?
-                    {
-                        score1: currentUser.currentUser.score1 + 1000
-                    } : {
-                        score1: currentUser.score + 1000
-                    }
+
+                Axios.get(url + 'user/' + currentUser.currentUser._id)
+                    .then(response => {
+                        if (response.status === 200) {
+                            console.log(response.data.score1)
+                            const points =
+                            {
+                                score1: response.data.score1 + 1000
+                            }
+                            Axios.post(url + 'user/score1/' + id, points)
+                        }
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+
                 var id = currentUser.currentUser._id;
-                Axios.post(url + 'user/score1/' + id, points)
             }
             var div = document.getElementById(respons.name)
             var form = document.getElementById(respons.name + 'form')

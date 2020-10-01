@@ -6,7 +6,7 @@
 }
 
 .crisis-container{
-    color: white;
+    color: #e4e4e4;
     width: 95%;
     margin: auto;
     position: relative;
@@ -32,18 +32,18 @@
 }
 
 .crisis-container .crisis{
-    font-size: 16px;
+    font-size: 21px;
     background: #1c1f24;
     margin: 0;
     padding: 4%;
     z-index: 1;
-    letter-spacing: 3px;
+    letter-spacing: 1.5px;
 }
 
 .crisis-container .options{
     width: 80%;
     margin: 20px auto;
-    font-size: 15px;
+    font-size: 18px;
     letter-spacing: 1px;
 }
 
@@ -54,6 +54,11 @@
 
 .crisis-container .options label{
     padding-left: 10px;
+    cursor: pointer;
+}
+
+.crisis-container form input[type=radio]{
+    cursor: pointer;
 }
 
 .crisis-page .crisis-container:before{

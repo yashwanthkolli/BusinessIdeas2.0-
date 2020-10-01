@@ -23,7 +23,9 @@ class StockMarket extends Component {
             isPopUpOpen: false,
             investedAmount: 0,
             investedCompanies: [],
-            news: []
+            news1: {},
+            news2: {},
+            news3: {}
         }
     }
 
@@ -56,6 +58,7 @@ class StockMarket extends Component {
                                 data: company.data
                             })
                         }
+                        return null
                     })
                 })
 
@@ -90,6 +93,11 @@ class StockMarket extends Component {
         this.setState({
             selectedCompany: this.state.companies[e.currentTarget.id],
             isPopUpOpen: true
+        }, () => {
+            const minPrice = this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price * this.state.selectedCompany.min
+            if (minPrice > this.state.capital) {
+                toast.error("Capital is too less to invest here", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
+            }
         })
         const { newsone, newstwo, newsthree } = this.state.companies[e.currentTarget.id]
         const firstNews = {
@@ -104,32 +112,44 @@ class StockMarket extends Component {
             headline: newsthree.split('#')[0],
             news: newsthree.split('#')[1]
         }
-        this.state.news.push(firstNews, secondNews, thirdNews)
+        this.setState({ news1: firstNews, news2: secondNews, news3: thirdNews, })
     }
 
     onInvestAmtChanged = (e) => {
         e.preventDefault()
         if (e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price <= this.state.capital) {
-            this.setState({ investedAmount: e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price })
+            if (e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price >= 0) {
+                this.setState({ investedAmount: e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price })
+                const totalTag = document.getElementById('investAmtTotal')
+                totalTag.innerHTML = (e.target.value * this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price).toFixed(2)
+            } else { toast.error("Enter Valid Amount", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER }) }
         } else {
             toast.error("Investment canNOT be greater than capital", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
             e.target.value = 0
         }
     }
 
+    isCapitalEnough = () => {
+        const capital = this.state.capital
+        const minPrice = this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price * this.state.selectedCompany.min
+        return (capital > minPrice)
+    }
+
     onInvest = (e) => {
         e.preventDefault()
+        var investBtn = document.getElementById('investBtn')
+        console.log(investBtn)
         const { selectedCompany, investedAmount, capital, investedCompanies } = this.state
         const numberOfShares = investedAmount / selectedCompany.data[this.state.selectedCompany.data.length - 1].price
         this.setState({ isPopUpOpen: false })
         if (investedAmount > 0) {
             if (numberOfShares >= selectedCompany.min) {
                 if (investedCompanies.length < 2) {
-                    this.setState({ capital: capital - investedAmount })
                     const existingCompany = investedCompanies.find((company) => company.name === selectedCompany.name)
                     if (existingCompany) {
                         toast.error("You have already invested in this company, canNOT invest again", { className: 'round2-toast', position: toast.POSITION.TOP_CENTER })
                     } else {
+                        this.setState({ capital: capital - investedAmount })
                         investedCompanies.push({
                             name: selectedCompany.name,
                             investedAmount: investedAmount,
@@ -171,7 +191,6 @@ class StockMarket extends Component {
 
     render() {
         if (sessionStorage.usertoken && this.props.currentUser) {
-            console.log(this.state)
             return (
                 this.state.companies ?
                     <div className='round2-page'>
@@ -194,7 +213,7 @@ class StockMarket extends Component {
                                 </div>
                             </div>
                             <Link to='/round2/score'><button>Next</button></Link>
-                            <Modal isOpen={this.state.isPopUpOpen} onRequestClose={() => this.setState({ isPopUpOpen: false })}>
+                            <Modal isOpen={this.state.isPopUpOpen} onRequestClose={() => this.setState({ isPopUpOpen: false })} >
                                 {
                                     this.state.selectedCompany ?
                                         <div className='popup'>
@@ -215,25 +234,29 @@ class StockMarket extends Component {
                                                 <p>Minimum <strong>{this.state.selectedCompany.min}</strong> shares should be purchased</p>
                                                 <form onSubmit={this.onInvest}>
                                                     <input
+                                                        id='investAmtContainer'
                                                         type='number'
                                                         placeholder='No. of Shares'
                                                         onChange={this.onInvestAmtChanged}
+                                                        disabled={!this.isCapitalEnough()}
                                                     />
-                                                    <button type='submit'>Invest</button>
+                                                    <button type='submit' id='investBtn' disabled={!this.isCapitalEnough()}>Invest</button>
                                                 </form>
+                                                <p>Total: <span id='investAmtTotal'>0</span></p>
+                                                <p>Maximum number of shares you can buy: {Math.floor(this.state.capital / this.state.selectedCompany.data[this.state.selectedCompany.data.length - 1].price)}</p>
                                             </div>
                                             <div className='popup-contents'>
                                                 <h1 className='heading-secondary'>Graph</h1>
                                                 <Graph stockData={this.state.selectedCompany.data.slice(0, 8)} />
                                                 <h1 className='heading-secondary'>News</h1>
-                                                {
-                                                    this.state.news.map((news, index) =>
-                                                        <div key={index} className='news'>
-                                                            <strong>{news.headline}</strong>
-                                                            <p>{news.news}</p>
-                                                        </div>
-                                                    )
-                                                }
+                                                <div className='news'>
+                                                    <strong>{this.state.news1.headline}</strong>
+                                                    <p>{this.state.news1.news}</p>
+                                                    <strong>{this.state.news2.headline}</strong>
+                                                    <p>{this.state.news2.news}</p>
+                                                    <strong>{this.state.news3.headline}</strong>
+                                                    <p>{this.state.news3.news}</p>
+                                                </div>
                                             </div>
                                         </div>
                                         : <div className='loading'>Loading...</div>

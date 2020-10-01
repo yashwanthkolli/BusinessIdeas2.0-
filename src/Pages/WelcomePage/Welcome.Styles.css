@@ -1,0 +1,103 @@
+.welcome-page{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.welcome-page button{
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    animation: appear 0.5s 3.5s  ;
+    animation-fill-mode: forwards;
+}
+
+.welcome-page .slogan{
+    position: absolute;
+    top: 63%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    opacity: 0;
+    animation: appear 0.5s 3s;
+    animation-fill-mode: forwards;
+    font-size: 32px;
+}
+
+.welcome-page h1{
+    color: #2ba15f;
+    font-weight: 500;
+    font-size: 36px;
+    letter-spacing: 4px;
+    position: absolute;
+    top: 73%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    animation: appear 0.5s 3.5s  ;
+    animation-fill-mode: forwards;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 40px;
+}
+
+.welcome-page button:hover{
+    background: #2ba15f;
+    color: white;
+    outline: none;
+    border: none;
+}
+
+.welcome-page .img-container{
+    width: 15%;
+    margin: auto;
+    margin-top: 5%;
+    margin-bottom: 0;
+}
+
+.welcome-page .img-container img{
+    width: 15%;
+    position: absolute;
+}
+
+#logo1{
+    opacity: 0;
+    animation: appear 0.5s 0.5s  ;
+    animation-fill-mode: forwards;
+}
+
+#logo2{
+    opacity: 0;
+    animation: appear 0.5s  1s   ;
+    animation-fill-mode: forwards;
+}
+#logo3{
+    opacity: 0;
+    animation: appear 0.5s  1.5s   ;
+    animation-fill-mode: forwards;
+}
+#logo4{
+    opacity: 0;
+    animation: appear 0.5s  2s   ;
+    animation-fill-mode: forwards;
+}
+#logo5{
+    opacity: 0;
+    animation: appear 0.5s  2.5s   ;
+    animation-fill-mode: forwards;
+}
+
+@keyframes appear{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

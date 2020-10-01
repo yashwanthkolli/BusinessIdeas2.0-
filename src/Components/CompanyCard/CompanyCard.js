@@ -7,7 +7,7 @@ const CompanyCard = ({ onclick, company, index }) => {
     return (
         <div id={index} onClick={onclick} className='company-card'>
             <h1 className='heading'>{name.toUpperCase()}</h1>
-            <h3>&#8377; {data[data.length - 1].price}</h3>
+
         </div>
     )
 }

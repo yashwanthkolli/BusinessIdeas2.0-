@@ -47,7 +47,11 @@ class RoundTwoScore extends Component {
         if (sessionStorage.usertoken && this.props.currentUser.currentUser) {
             return (
                 <div className='round2_score'>
-                    <button onClick={this.nextRound}>Round 3</button>
+                    <div className='round-one-score'>
+                        <p className='round-text'>Round-2 Completed!!</p>
+                        <button onClick={this.nextRound}>Round 3</button>
+                    </div>
+
                 </div>
             )
         }

@@ -40,8 +40,12 @@
 
 .mcq-container .mcq label{
     padding-left: 6px;
+    cursor: pointer;
 }
 
+.mcq-container .mcq input[type=radio]{
+    cursor: pointer;
+}
 
 .mcqs-container button{
     position: relative;

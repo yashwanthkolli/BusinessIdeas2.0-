@@ -7,11 +7,10 @@
 }
 
 .comprehension-rules-container .comprehesion-rules{
-    background: #282c34;
     width: 85%;
     border-radius: 10px;
     transition: all 1s cubic-bezier(0.445, 0.05, 0, 1);
-    color: #fff;
+    color: #e4e4e4;
     transform: scale(0.95);
 }
 
@@ -29,7 +28,7 @@
     height: fit-content;
     padding: 10px 10%;
     margin: 0;
-    font-size: 15px;
+    font-size: 18px;
 }
 
 .comprehension-rules-container .comprehesion-rules a{

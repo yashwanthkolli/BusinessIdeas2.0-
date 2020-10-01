@@ -11,9 +11,9 @@ class NavBar extends Component {
                     <img src={require('../../Assets/logo.png')} alt='logo' />
                     <div className='text'>BUSINESS IDEAS 2.0</div>
                     <button onClick={() => {
-                        window.location = '/';
+                        window.location = '/login';
                         sessionStorage.clear()
-                    }} className='logout-btn'>LogOut</button>
+                    }} className='logout-btn'>Log Out</button>
                     <div className='timer'>
                         <Timer />
                     </div>

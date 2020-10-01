@@ -37,6 +37,7 @@ import PseudoRoundSet from './Pages/PseudoRoundSetPage/PseudoRoundSet';
 import AfterIntro from './Pages/PseudoRoundOneTimeSet/PseudoRoundOneTimeSet';
 import Redirect1 from './Pages/PseudoRoundOneTimeSet/Redirect1';
 import RoundTwoScore from './Pages/Round2Score/RoundTwoScore';
+import Welcome from './Pages/WelcomePage/Welcome';
 
 Modal.setAppElement('#root')
 
@@ -63,7 +64,8 @@ class App extends Component {
 
           <Provider store={store}>
             <Switch>
-              <Route exact path='/' component={HomePage} />
+              <Route exact path='/' component={Welcome} />
+              <Route exact path='/login' component={HomePage} />
               <Route exact path='/setRound/:id' component={PseudoRoundSet} />
               <Route exact path='/redirect/:id' component={PseudoRedirect} />
               <Route exact path='/intro/:id' component={IntroductionPage} />

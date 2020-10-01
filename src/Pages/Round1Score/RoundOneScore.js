@@ -6,6 +6,8 @@ import ScoreCard from '../../Components/ScoreCard/ScoreCard';
 
 import url from '../../Components/Url/Url'
 
+import './R1S.Styles.css'
+
 class RoundOneScore extends Component {
     constructor() {
         super()
@@ -47,6 +49,7 @@ class RoundOneScore extends Component {
         if (sessionStorage.usertoken && this.props.currentUser.currentUser) {
             return (
                 <React.Fragment>
+                    <p className='round1_score_rules'>You can logout and move to general chat on MS Teams</p>
                     <ScoreCard
                         redirect={'/round2/rules/' + this.props.currentUser.currentUser._id}
                         score={this.state.round1Score}

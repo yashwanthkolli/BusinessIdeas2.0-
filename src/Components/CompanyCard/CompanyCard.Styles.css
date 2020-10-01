@@ -39,9 +39,12 @@
 }
 
 .company-card .heading{
+    position: absolute;
     font-size: 30px;
     letter-spacing: 5px;
-    margin: 20px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .company-card h3{

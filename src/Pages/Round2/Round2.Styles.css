@@ -162,6 +162,12 @@
     margin-top: 20px;
 }
 
+.ReactModal__Content .popup .popup-details button:disabled{
+    opacity: 0.5;
+    background-color: #2ba15f;
+    color: white;
+}
+
 .ReactModal__Content .popup .popup-details button:hover{
     background: #2ba15f;
     color: white;
